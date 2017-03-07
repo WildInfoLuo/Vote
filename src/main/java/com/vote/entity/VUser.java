@@ -1,7 +1,7 @@
 package com.vote.entity;
 
 /**
- * 用户的类
+ * 用户
  * 
  * @author Wild
  *
