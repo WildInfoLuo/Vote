@@ -1,0 +1,13 @@
+信息: 2017-03-06 12:52:39,173  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==>  Preparing: insert into VoteUser (vuId,vuUsername,vuPassword,vuVersion) values(seq_userid.nextval,?,?,?) 
+信息: 2017-03-06 12:58:01,703  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==>  Preparing: insert into VoteUser (vuId,vuUsername,vuPassword,vuVersion) values(seq_userid.nextval,?,?,?) 
+信息: 2017-03-06 12:58:01,831  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==> Parameters: fdas(String), a(String), 0(Integer)
+信息: 2017-03-06 12:59:04,372  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==>  Preparing: insert into VoteUser (vuId,vuUsername,vuPassword,vuVersion) values(seq_userid.nextval,?,?,?) 
+信息: 2017-03-06 12:59:04,513  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==> Parameters: fdas(String), a(String), 0(Integer)
+信息: 2017-03-06 13:01:54,511  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==>  Preparing: insert into VoteUser (vuId,vuUsername,vuPassword,vuVersion) values(seq_userid.nextval,?,?,?) 
+信息: 2017-03-06 13:01:54,644  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==> Parameters: fdas(String), a(String), 0(Integer)
+信息: 2017-03-06 13:03:23,198  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==>  Preparing: insert into VoteUser (vuId,vuUsername,vuPassword,vuStatus,vuVersion) values(seq_userid.nextval,?,?,?,?) 
+信息: 2017-03-06 13:03:23,344  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==> Parameters: fdas(String), a(String), 2(Integer), 0(Integer)
+信息: 2017-03-06 13:03:23,356  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - <==    Updates: 1
+信息: 2017-03-06 13:03:56,954  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==>  Preparing: insert into VoteUser (vuId,vuUsername,vuPassword,vuStatus,vuVersion) values(seq_userid.nextval,?,?,?,?) 
+信息: 2017-03-06 13:03:57,093  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==> Parameters: Luodawei(String), a(String), 2(Integer), 0(Integer)
+信息: 2017-03-06 13:03:57,101  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - <==    Updates: 1
