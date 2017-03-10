@@ -9,9 +9,6 @@ import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 
 public class CouldMessage {
-//	public static void main(String[] args) {
-//		CouldMessageContent("15197462069", getCharAndNumr(4));
-//	}
 
 	public void CouldMessageContent(String tel, String num) {
 		// 申请的端口 公共参数 TOP分配给应用的AppKey。
@@ -39,21 +36,13 @@ public class CouldMessage {
 	 * @param length[生成随机数的长度]
 	 * @return
 	 *//*
-	public static String getCharAndNumr(int length) {
-		String val = "";
-		Random random = new Random();
-		for (int i = 0; i < length; i++) {
-			// 输出字母还是数字
-			String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";
-			// 字符串
-			if ("char".equalsIgnoreCase(charOrNum)) {
-				// 取得大写字母还是小写字母
-				int choice = random.nextInt(2) % 2 == 0 ? 65 : 97;
-				val += (char) (choice + random.nextInt(26));
-			} else if ("num".equalsIgnoreCase(charOrNum)) { // 数字
-				val += String.valueOf(random.nextInt(10));
-			}
-		}
-		return val;
-	}*/
+		 * public static String getCharAndNumr(int length) { String val = "";
+		 * Random random = new Random(); for (int i = 0; i < length; i++) { //
+		 * 输出字母还是数字 String charOrNum = random.nextInt(2) % 2 == 0 ? "char" :
+		 * "num"; // 字符串 if ("char".equalsIgnoreCase(charOrNum)) { //
+		 * 取得大写字母还是小写字母 int choice = random.nextInt(2) % 2 == 0 ? 65 : 97; val
+		 * += (char) (choice + random.nextInt(26)); } else if
+		 * ("num".equalsIgnoreCase(charOrNum)) { // 数字 val +=
+		 * String.valueOf(random.nextInt(10)); } } return val; }
+		 */
 }
