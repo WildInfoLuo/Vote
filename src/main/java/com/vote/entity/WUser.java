@@ -6,14 +6,14 @@ package com.vote.entity;
  * @author Wild
  *
  */
-public class VUser {
+public class WUser {
 	private int vuId;// 用户id
 	private String vname;// 用户名字
 	private String vpwd;// 用户密码
 	private int vuStatus;// 用户状态
 	private int version;// 用户角色
 
-	public VUser(String vname, String vpwd, int vuStatus, int version) {
+	public WUser(String vname, String vpwd, int vuStatus, int version) {
 		this.vname = vname;
 		this.vpwd = vpwd;
 		this.vuStatus = vuStatus;
