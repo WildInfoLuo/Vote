@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vote.entity.WUser;
+import com.vote.entity.VUser;
 import com.vote.service.VUservice;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,7 +18,7 @@ public class ConnTest {
 
 	@Test
 	public void testRegister() {
-		int user = vservice.register(new WUser("Luodawei","a",2, 0));
+		int user = vservice.register(new VUser("Luodawei","a",2, 0));
 		System.out.println("用户名为：" + user);
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vote.entity.WUser;
+import com.vote.entity.VUser;
 import com.vote.mapper.VUserMapper;
 import com.vote.service.VUservice;
 
@@ -16,12 +16,12 @@ public class VUserviceImpl implements VUservice {
 	private VUserMapper vmapper;
 
 	@Override
-	public int register(WUser user) {
+	public int register(VUser user) {
 		return vmapper.register(user);
 	}
 
 	@Override
-	public List<WUser> login(WUser user) {
+	public List<VUser> login(VUser user) {
 		return null;
 	}
 

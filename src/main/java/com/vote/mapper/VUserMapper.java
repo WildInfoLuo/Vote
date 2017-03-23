@@ -2,7 +2,7 @@ package com.vote.mapper;
 
 import java.util.List;
 
-import com.vote.entity.WUser;
+import com.vote.entity.VUser;
 
 public interface VUserMapper {
 	/**
@@ -11,7 +11,7 @@ public interface VUserMapper {
 	 * @param user
 	 * @return
 	 */
-	public int register(WUser user);
+	public int register(VUser user);
 
 	/**
 	 * 用户登录
@@ -19,5 +19,5 @@ public interface VUserMapper {
 	 * @param user
 	 * @return
 	 */
-	public List<WUser> login(WUser user);
+	public List<VUser> login(VUser user);
 }

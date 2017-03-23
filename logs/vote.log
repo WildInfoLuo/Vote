@@ -11,3 +11,9 @@
 信息: 2017-03-06 13:03:56,954  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==>  Preparing: insert into VoteUser (vuId,vuUsername,vuPassword,vuStatus,vuVersion) values(seq_userid.nextval,?,?,?,?) 
 信息: 2017-03-06 13:03:57,093  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==> Parameters: Luodawei(String), a(String), 2(Integer), 0(Integer)
 信息: 2017-03-06 13:03:57,101  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - <==    Updates: 1
+信息: 2017-03-22 20:24:56,132  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==>  Preparing: insert into VoteUser (vuId,vuUsername,vuPassword,vuStatus,vuVersion) values(seq_userid.nextval,?,?,?,?) 
+信息: 2017-03-22 20:24:56,265  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==> Parameters: Luodawei(String), a(String), 2(Integer), 0(Integer)
+信息: 2017-03-22 20:24:56,278  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - <==    Updates: 1
+信息: 2017-03-22 20:31:09,149  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==>  Preparing: insert into VoteUser (vuId,vuUsername,vuPassword,vuStatus,vuVersion) values(seq_userid.nextval,?,?,?,?) 
+信息: 2017-03-22 20:31:09,284  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - ==> Parameters: Luodawei(String), a(String), 2(Integer), 0(Integer)
+信息: 2017-03-22 20:31:09,296  DEBUG BaseJdbcLogger (BaseJdbcLogger.java:145) - <==    Updates: 1
