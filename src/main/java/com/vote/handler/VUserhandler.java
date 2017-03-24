@@ -3,6 +3,7 @@ package com.vote.handler;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,19 +14,18 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.gson.Gson;
 import com.vote.entity.VUser;
 import com.vote.service.VUservice;
+import com.vote.utils.CouldMessage;
 import com.vote.utils.PublicKeyMap;
 import com.vote.utils.RSAUtils;
 import com.vote.utils.SessionAttribute;
 
 @Controller
 @RequestMapping("/vuser")
-@SessionAttributes(SessionAttribute.USERLOGIN)
-public class VUserhandler implements Serializable {
-	private static final long serialVersionUID = -4796156351894344700L;
+public class VUserhandler {
 
 	@Autowired
 	private VUservice uservice;
@@ -58,4 +58,47 @@ public class VUserhandler implements Serializable {
 		System.out.println(publicKeyMap);
 		return "login";
 	}
+	/**
+	 * 获取电话号码得出验证码
+	 * 
+	 * @param user
+	 * @param out
+	 */
+	@RequestMapping(value = "/message", method = RequestMethod.POST)
+	public void MessageResiter(PrintWriter out, HttpServletRequest request, HttpSession session) {
+		CouldMessage cl = new CouldMessage();
+		String tel = request.getParameter("tel");
+		String num = getCharAndNumr(6);
+		session.setAttribute(SessionAttribute.TELRLOGIN, num);
+		cl.CouldMessageContent(tel, num);
+		Gson gson = new Gson();
+		out.println(gson.toJson(num));
+		out.flush();
+		out.close();
+	}
+
+	/**
+	 * java生成随机数字和字母组合
+	 * 
+	 * @param length[生成随机数的长度]
+	 * @return
+	 */
+	public String getCharAndNumr(int length) {
+		String val = "";
+		Random random = new Random();
+		for (int i = 0; i < length; i++) {
+			// 输出字母还是数字
+			String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";
+			// 字符串
+			if ("char".equalsIgnoreCase(charOrNum)) {
+				// 取得大写字母还是小写字母
+				int choice = random.nextInt(2) % 2 == 0 ? 65 : 97;
+				val += (char) (choice + random.nextInt(26));
+			} else if ("num".equalsIgnoreCase(charOrNum)) { // 数字
+				val += String.valueOf(random.nextInt(10));
+			}
+		}
+		return val;
+	}
+
 }

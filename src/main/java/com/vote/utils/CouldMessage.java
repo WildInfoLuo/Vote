@@ -20,7 +20,7 @@ public class CouldMessage {
 		AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
 		req.setExtend("123456");// 使用用户类型
 		req.setSmsType("normal");// 必须是normal
-		req.setSmsFreeSignName("云Vcloud");// 短信模版签名
+		req.setSmsFreeSignName("Vote注册");// 短信模版签名
 		req.setSmsParamString("{\"name\":\"" + num + "\"}");// 发送内容
 		req.setRecNum(tel);// 接收手机号码,可以是多个手机号码，用,隔开
 		req.setSmsTemplateCode("SMS_13191824");// 申请的短信模版
