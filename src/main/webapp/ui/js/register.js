@@ -8,7 +8,7 @@ function sendcheckcode() {
 			tel : tel
 		}, function(data) {
 			if (data) {
-
+				codeid = data;
 			}
 		}, "json");
 	} else {
@@ -18,5 +18,16 @@ function sendcheckcode() {
 
 $("#save").click()
 {
-	alert("点击了");
+	$.post("../vuser/produceRas", function(data) {
+		if (data) {
+			alert("数据好了");
+			var modulus = data.modulus, exponent = data.exponent;
+            var epwd = $('#password').val();
+            if (epwd.length != 256) {
+                var publicKey = RSAUtils.getKeyPair(exponent, '', modulus);
+                $('#password').val(RSAUtils.encryptedString(publicKey, epwd));
+            }
+            //$("#save").submit();
+		}
+	}, "json");
 }

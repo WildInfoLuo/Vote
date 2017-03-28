@@ -1,7 +1,6 @@
 package com.vote.handler;
 
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 
@@ -10,10 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.vote.entity.VUser;
@@ -53,11 +54,23 @@ public class VUserhandler {
 		}
 	}
 
-	public String keyPair() {
+	/**
+	 * 生成密钥
+	 * 
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/produceRas", method = RequestMethod.POST)
+	public String keyPair(PrintWriter out, HttpServletRequest request, HttpSession session) {
 		PublicKeyMap publicKeyMap = RSAUtils.getPublicKeyMap();
 		System.out.println(publicKeyMap);
+		Gson gson = new Gson();
+		out.println(gson.toJson(publicKeyMap));
+		out.flush();
+		out.close();
 		return "login";
 	}
+
 	/**
 	 * 获取电话号码得出验证码
 	 * 

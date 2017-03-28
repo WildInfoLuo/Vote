@@ -18,7 +18,7 @@
 	<div id="register" class="box">
 		<h2>新用户注册</h2>
 		<div class="content">
-			<form method="post" action="Register!register.action">
+			<form method="post">
 				<dl>
 					<dt>手机号码：</dt>
 					<dd>
