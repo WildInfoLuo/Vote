@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,14 +60,24 @@ public class VUserhandler {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/produceRas", method = RequestMethod.POST)
-	public String keyPair(PrintWriter out, HttpServletRequest request, HttpSession session) {
+	public void keyPair(PrintWriter out) {
 		PublicKeyMap publicKeyMap = RSAUtils.getPublicKeyMap();
-		System.out.println(publicKeyMap);
 		Gson gson = new Gson();
 		out.println(gson.toJson(publicKeyMap));
 		out.flush();
 		out.close();
-		return "login";
+	}
+
+	/**
+	 * 进行注册
+	 * 
+	 * @param out
+	 * @param request
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/produceRas", method = RequestMethod.POST)
+	public void getKeyMap(PrintWriter out, HttpServletRequest request) {
+		
 	}
 
 	/**
