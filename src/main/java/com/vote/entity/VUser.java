@@ -1,5 +1,7 @@
 package com.vote.entity;
 
+import com.vote.enums.UserStatusEnum;
+
 /**
  * 用户
  * 
@@ -7,24 +9,28 @@ package com.vote.entity;
  *
  */
 public class VUser {
-	private int vuId;// 用户id
+	private String vuId;// 用户id
 	private String vname;// 用户名字
 	private String vpwd;// 用户密码
-	private int vuStatus;// 用户状态
+	private String phone;// 用户电话号码
+	private UserStatusEnum vuStatus;// 用户状态
 	private int version;// 用户角色
 
-	public VUser(String vname, String vpwd, int vuStatus, int version) {
+	public VUser(String vname, String vpwd, UserStatusEnum vuStatus, int version) {
 		this.vname = vname;
 		this.vpwd = vpwd;
 		this.vuStatus = vuStatus;
 		this.version = version;
 	}
 
-	public int getVuId() {
+	public VUser() {
+	}
+
+	public String getVuId() {
 		return vuId;
 	}
 
-	public void setVuId(int vuId) {
+	public void setVuId(String vuId) {
 		this.vuId = vuId;
 	}
 
@@ -44,11 +50,11 @@ public class VUser {
 		this.vpwd = vpwd;
 	}
 
-	public int getVuStatus() {
+	public UserStatusEnum getVuStatus() {
 		return vuStatus;
 	}
 
-	public void setVuStatus(int vuStatus) {
+	public void setVuStatus(UserStatusEnum vuStatus) {
 		this.vuStatus = vuStatus;
 	}
 
@@ -64,5 +70,13 @@ public class VUser {
 	public String toString() {
 		return "VUser [vuId=" + vuId + ", vname=" + vname + ", vpwd=" + vpwd + ", vuStatus=" + vuStatus + ", version="
 				+ version + "]";
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 }

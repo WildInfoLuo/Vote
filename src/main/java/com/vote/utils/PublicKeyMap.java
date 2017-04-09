@@ -1,11 +1,15 @@
 package com.vote.utils;
 
+import java.io.Serializable;
+
 /**
- * 密钥类
+ * 公钥类
  * @author Wild
  *
  */
-public class PublicKeyMap {
+public class PublicKeyMap implements Serializable{
+	private static final long serialVersionUID = 38912460353805838L;
+	
 	private String modulus;
 	private String exponent;
 

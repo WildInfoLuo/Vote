@@ -294,8 +294,12 @@ public class RSAUtils {
 	 * @return 原数据。
 	 */
 	public static byte[] decrypt(PrivateKey privateKey, byte[] data) throws Exception {
-		Cipher ci = Cipher.getInstance(ALGORITHOM, DEFAULT_PROVIDER);
+		/** 得到Cipher对象来实现对源数据的RSA加密 */
+	    Cipher ci = Cipher.getInstance("RSA/ECB/NoPadding");
+		System.out.println("ci=======>>"+ci);
+		System.out.println(data);
 		ci.init(Cipher.DECRYPT_MODE, privateKey);
+		System.out.println("data***********"+ci.doFinal(data));
 		return ci.doFinal(data);
 	}
 
@@ -396,6 +400,7 @@ public class RSAUtils {
 		try {
 			byte[] en_data = Hex.decodeHex(encrypttext.toCharArray());
 			byte[] data = decrypt((RSAPrivateKey) keyPair.getPrivate(), en_data);
+			System.out.println("==="+data);
 			return new String(data);
 		} catch (NullPointerException ex) {
 			LOGGER.error("keyPair cannot be null.");

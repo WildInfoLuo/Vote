@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.vote.entity.VUser;
+import com.vote.enums.UserStatusEnum;
 import com.vote.service.VUservice;
 import com.vote.utils.CouldMessage;
 import com.vote.utils.PublicKeyMap;
 import com.vote.utils.RSAUtils;
 import com.vote.utils.SessionAttribute;
+import com.vote.utils.UUIDUtil;
 
 @Controller
 @RequestMapping("/vuser")
@@ -61,7 +63,7 @@ public class VUserhandler {
 	@ResponseBody
 	@RequestMapping(value = "/produceRas", method = RequestMethod.POST)
 	public void keyPair(PrintWriter out) {
-		PublicKeyMap publicKeyMap = RSAUtils.getPublicKeyMap();
+		PublicKeyMap publicKeyMap = RSAUtils.getPublicKeyMap();// 生成公钥
 		Gson gson = new Gson();
 		out.println(gson.toJson(publicKeyMap));
 		out.flush();
@@ -74,10 +76,27 @@ public class VUserhandler {
 	 * @param out
 	 * @param request
 	 */
-	@ResponseBody
-	@RequestMapping(value = "/produceRas", method = RequestMethod.POST)
-	public void getKeyMap(PrintWriter out, HttpServletRequest request) {
-		
+	@RequestMapping(value = "/getKeyMap", method = RequestMethod.POST)
+	public String getKeyMap(PrintWriter out, HttpServletRequest request) {
+		VUser user = new VUser();
+		String phone = request.getParameter("phoneId");// 手机号码
+		String userName = request.getParameter("userName");// 用户名
+		// 生成密钥
+		String encrypttext = request.getParameter("getMapKey");// 前台密文
+		String vpwd = RSAUtils.decryptStringByJs(encrypttext);
+
+		user.setVuId(UUIDUtil.createUUID());
+		user.setVname(userName);
+		user.setVpwd(vpwd);
+		user.setPhone(phone);
+		user.setVersion(0);
+		user.setVuStatus(UserStatusEnum.normal);// 用户正常
+
+		int result = uservice.register(user);
+		if (result < 0) {// 如果注册失败
+			return "register";
+		}
+		return "reg_success";
 	}
 
 	/**
