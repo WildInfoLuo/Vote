@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.vote.mapper.VUserMapper">
 	<insert id="register" parameterType="VUser">
 		insert into VoteUser
-		(vuId,vuUsername,vuPassword,vuStatus,vuVersion)
-		values(seq_userid.nextval,#{vname},#{vpwd},#{vuStatus},#{version})
+		(vuId,vuUsername,vuPassword,vuStatus,vuVersion,vphone)
+		values(#{vuId},#{vname},#{vpwd},#{vuStatus},#{version},#{vphone})
 	</insert>
 </mapper>

@@ -26,7 +26,6 @@ $("#save").click(function() {
 			if (epwd.length != 256) {
 				var publicKey = RSAUtils.getKeyPair(exponent, '', modulus);
 				var getMapKey = RSAUtils.encryptedString(publicKey, epwd);// 根据公钥生成密文
-				// $('#password').val(getMapKey);
 				$.post("../vuser/getKeyMap", {
 					getMapKey : getMapKey,
 					userName : userName,

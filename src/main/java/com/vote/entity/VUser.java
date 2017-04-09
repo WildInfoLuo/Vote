@@ -12,7 +12,7 @@ public class VUser {
 	private String vuId;// 用户id
 	private String vname;// 用户名字
 	private String vpwd;// 用户密码
-	private String phone;// 用户电话号码
+	private String vphone;// 用户电话号码
 	private UserStatusEnum vuStatus;// 用户状态
 	private int version;// 用户角色
 
@@ -73,10 +73,10 @@ public class VUser {
 	}
 
 	public String getPhone() {
-		return phone;
+		return vphone;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhone(String vphone) {
+		this.vphone = vphone;
 	}
 }

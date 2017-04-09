@@ -84,7 +84,7 @@ public class VUserhandler {
 		// 生成密钥
 		String encrypttext = request.getParameter("getMapKey");// 前台密文
 		String vpwd = RSAUtils.decryptStringByJs(encrypttext);
-
+		
 		user.setVuId(UUIDUtil.createUUID());
 		user.setVname(userName);
 		user.setVpwd(vpwd);

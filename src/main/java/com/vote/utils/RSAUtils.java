@@ -296,10 +296,7 @@ public class RSAUtils {
 	public static byte[] decrypt(PrivateKey privateKey, byte[] data) throws Exception {
 		/** 得到Cipher对象来实现对源数据的RSA加密 */
 	    Cipher ci = Cipher.getInstance("RSA/ECB/NoPadding");
-		System.out.println("ci=======>>"+ci);
-		System.out.println(data);
 		ci.init(Cipher.DECRYPT_MODE, privateKey);
-		System.out.println("data***********"+ci.doFinal(data));
 		return ci.doFinal(data);
 	}
 
