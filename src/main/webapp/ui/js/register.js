@@ -1,3 +1,8 @@
+//添加格式验证
+$(function() {
+	$("#contents").validate();
+});
+
 // 获取验证码
 function sendcheckcode() {
 	var tel = $.trim($("#phoneId").val());
@@ -5,9 +10,7 @@ function sendcheckcode() {
 		$.post("../vuser/message", {
 			tel : tel
 		}, function(data) {
-			if (data) {
-				codeid = data;
-			}
+			alert(data.desc);
 		}, "json");
 	} else {
 		alert("请确认手机号是否正确!")
@@ -18,6 +21,7 @@ function sendcheckcode() {
 $("#save").click(function() {
 	var userName = $('#userName').val();// 用户名
 	var phoneId = $('#phoneId').val();// 手机号码
+	var messages = $('#messages').val();// 手机验证码
 	$.post("../vuser/produceRas", function(data) {
 		if (data) {
 			var modulus = data.modulus;// 后台生成密钥对
@@ -29,14 +33,12 @@ $("#save").click(function() {
 				$.post("../vuser/getKeyMap", {
 					getMapKey : getMapKey,
 					userName : userName,
-					phoneId : phoneId
+					phoneId : phoneId,
+					messages : messages
 				}, function(data) {
-					if (data) {
-
-					}
+					alert(data.desc);
 				}, "json");
 			}
-
 			$("#save").submit();
 		}
 	}, "json")

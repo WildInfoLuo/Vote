@@ -144,6 +144,13 @@
 			<version>${gson.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!--json数据包  -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
 		<!-- json绑定的包 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

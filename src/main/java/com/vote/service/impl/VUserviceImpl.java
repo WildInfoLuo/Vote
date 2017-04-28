@@ -22,7 +22,12 @@ public class VUserviceImpl implements VUservice {
 
 	@Override
 	public List<VUser> login(VUser user) {
-		return null;
+		return vmapper.login(user);
+	}
+
+	@Override
+	public String selectPhone(String phone) {
+		return vmapper.selectPhone(phone);
 	}
 
 }

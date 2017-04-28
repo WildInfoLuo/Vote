@@ -1,12 +1,12 @@
 package com.vote.enums;
 
-public enum UserStatusEnum {
+public enum UserVersioniEnum {
 	// 正常    注销 
-	normal("1"), cancel("2");
+	supervision("超级管理员"), manversion("一般管理员"),common("普通用户");
 
 	private String desc;
 
-	private UserStatusEnum(String desc) {
+	private UserVersioniEnum(String desc) {
 		this.desc = desc;
 	}
 

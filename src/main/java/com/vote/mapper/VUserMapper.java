@@ -20,4 +20,12 @@ public interface VUserMapper {
 	 * @return
 	 */
 	public List<VUser> login(VUser user);
+
+	/**
+	 * 查询是否存在该用户
+	 * 
+	 * @param phone
+	 * @return
+	 */
+	public String selectPhone(String phone);
 }

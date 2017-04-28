@@ -17,21 +17,21 @@
 	</div>
 	<div id="register" class="box">
 		<h2>新用户注册</h2>
-		<div class="content">
+		<div class="content" id="contents">
 			<form method="post">
 				<dl>
 					<dt>手机号码：</dt>
 					<dd>
-						<input type="text" class="input-text" id="phoneId" value="" />
+						<input type="text" class="input-text {required:true, minlength:10}" id="phoneId" value="" />
 					</dd>
 					<dd><input type="button" value="获取验证码" onclick="sendcheckcode()" /></dd>
 					<dt>用户名：</dt>
 					<dd>
-						<input type="text" class="input-text" id="userName" value="" />
+						<input type="text" class="input-text {required:true, minlength:2}" id="userName" value="" />
 					</dd>
 					<dt>密码：</dt>
 					<dd>
-						<input type="password" class="input-text" id="password" value="" />
+						<input type="password" class="input-text {required:true, minlength:2}" id="password" value="" />
 					</dd>
 					<dt>验证码：</dt>
 					<dd>
@@ -47,6 +47,8 @@
 	</div>
 	<div id="footer" class="wrap">Wild &copy; 版权所有</div>
 	<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.validate.js"></script>
+	<script type="text/javascript" src="../js/messages_cn.js"></script>
 	<script type="text/javascript" src="js/security.js"></script>
 	<script type="text/javascript" src="js/register.js"></script>
 </body>

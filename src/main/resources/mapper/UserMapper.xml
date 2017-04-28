@@ -6,6 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="register" parameterType="VUser">
 		insert into VoteUser
 		(vuId,vuUsername,vuPassword,vuStatus,vuVersion,vphone)
-		values(#{vuId},#{vname},#{vpwd},#{vuStatus},#{version},#{vphone})
+		values(#{vuId},#{vuusername},#{vupassword},#{Vustatus},#{vuversion},#{vphone})
 	</insert>
+	<select id="selectPhone" parameterType="String" resultType="String">
+		select vphone from VoteUser where vphone=#{vphone}
+	</select>
 </mapper>

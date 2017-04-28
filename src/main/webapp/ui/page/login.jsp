@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
 	<div id="header" class="wrap">
@@ -45,8 +45,8 @@
 	</div>
 	<div class="wrap"></div>
 	<div id="footer" class="wrap">Wild &copy; 版权所有</div>
-	<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="js/security.js"></script>
-	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../js/security.js"></script>
+	<script type="text/javascript" src="../js/login.js"></script>
 </body>
 </html>

@@ -397,7 +397,6 @@ public class RSAUtils {
 		try {
 			byte[] en_data = Hex.decodeHex(encrypttext.toCharArray());
 			byte[] data = decrypt((RSAPrivateKey) keyPair.getPrivate(), en_data);
-			System.out.println("==="+data);
 			return new String(data);
 		} catch (NullPointerException ex) {
 			LOGGER.error("keyPair cannot be null.");
