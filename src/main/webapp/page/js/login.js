@@ -9,10 +9,10 @@ $(".input-button").click(function() {
 	});
 	$("#login").submit();*/
 	
-	$.post("../../vuser/login",{
+	/*$.post("../../vuser/login",{
 		epwd : epwd,
 		userName : userName
 	}, function(data) {
-		
-	});
+		alert(data.desc);
+	},"json");*/
 });

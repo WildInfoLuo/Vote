@@ -19,7 +19,7 @@ public interface VUserMapper {
 	 * @param user
 	 * @return
 	 */
-	public List<VUser> login(VUser user);
+	public VUser login(VUser user);
 
 	/**
 	 * 查询是否存在该用户

@@ -16,6 +16,7 @@ public class VUser {
 	private UserStatusEnum Vustatus;// 用户状态
 	private UserVersioniEnum vuversion;// 用户角色
 	private String vphone;// 用户电话号码
+	private String code;// 用户的验证码
 
 	public VUser(String vuId, String vuusername, String vupassword, String vphone, UserStatusEnum vustatus,
 			UserVersioniEnum vuversion) {
@@ -25,6 +26,9 @@ public class VUser {
 		this.vphone = vphone;
 		this.Vustatus = vustatus;
 		this.vuversion = vuversion;
+	}
+
+	public VUser() {
 	}
 
 	public String getVuId() {
@@ -79,5 +83,13 @@ public class VUser {
 	public String toString() {
 		return "VUser [vuId=" + vuId + ", vuusername=" + vuusername + ", vupassword=" + vupassword + ", Vustatus="
 				+ Vustatus + ", vuversion=" + vuversion + ", vphone=" + vphone + "]";
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

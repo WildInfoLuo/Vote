@@ -55,5 +55,4 @@
 	<mvc:default-servlet-handler />
 	<!--控制器驱动处理 ,包括数据类型转换，数据格式化， -->
 	<mvc:annotation-driven />
-	
 </beans>

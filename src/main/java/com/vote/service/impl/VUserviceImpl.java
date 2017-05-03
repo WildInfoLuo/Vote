@@ -1,7 +1,5 @@
 package com.vote.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,7 @@ public class VUserviceImpl implements VUservice {
 	}
 
 	@Override
-	public List<VUser> login(VUser user) {
+	public VUser login(VUser user) {
 		return vmapper.login(user);
 	}
 

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>投票列表</title>
+<title>管理投票</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -13,12 +13,11 @@
 <div id="vote" class="wrap">
 	<h2>投票列表</h2>
 	<ul class="list">
-	
-		<li>
-			<h4>				
-				<a href="Vote!view.action?entityId=<s:property value='id'/>"><s:property value="title"/></a>
+		<li class="odd">
+			<h4>
+				<em><a href="Subject!read.action?entityId=<s:property value='id'/>">维护</a></em>
+				<a href="#"><s:property value="title"/></a>
 			</h4>
-			<div class="join"><a href="Vote.action?entityId=<s:property value='id'/>">我要参与</a></div>
 			<p class="info">共有 <s:property value="options.size"/> 个选项，已有 <s:property value="votes[id]"/> 个网友参与了投票。</p>
 		</li>
 	</ul>

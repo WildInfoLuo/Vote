@@ -2,7 +2,6 @@ package com.vote.handler;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -12,10 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -39,21 +37,25 @@ public class VUserhandler {
 	/**
 	 * 用户登录
 	 * 
-	 * @param session:用户名验证session
 	 * @return：登录页面
 	 */
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String Login(VUser userLogin, BindingResult result, HttpServletRequest request, PrintWriter out,
-			ModelMap map, HttpSession session) {
-		
+	public String login(@RequestParam("vuId")String vuId, @RequestParam("vupassword") String vupassword,
+			HttpServletRequest request, PrintWriter out, HttpSession session) {
+		VUser userLogin = new VUser();
 		// 如果有错误的话，那么将返回注册页面
-		List<VUser> users = uservice.login(userLogin);
-		if (users.size() > 0) {
-			map.put(SessionAttribute.USERLOGIN, users.get(0));
-			// LogManager.getLogger().debug("user==>" + userLogin);
-			return "index";
+		if (StringUtils.isNotBlank(vuId) && StringUtils.isNotBlank(vupassword)) {
+			userLogin.setVphone(vuId);
+			userLogin.setVupassword(vupassword);
+			VUser users = uservice.login(userLogin);
+			if (null != users) {
+				session.setAttribute(SessionAttribute.USERLOGIN, users.getVuusername());
+				return "index";
+			} else {
+				return "login";
+			}
 		} else {
-			map.put(SessionAttribute.LOGERRORMSG, "用户名或密码输入不正确");
 			return "login";
 		}
 	}
@@ -79,62 +81,38 @@ public class VUserhandler {
 	 * @param out
 	 * @param request
 	 */
-	@RequestMapping(value = "/getKeyMap", method = RequestMethod.POST)
-	public String getKeyMap(PrintWriter out, HttpServletRequest request, HttpSession session) {
-		Gson gson = new Gson();
-		Map<String, Object> map = new HashMap<>();
-		String phone = request.getParameter("phoneId");// 手机号码
-		String userName = request.getParameter("userName");// 用户名
-		String messages = request.getParameter("messages");// 前台输入验证码
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String getKeyMap(@RequestParam("phoneId") String phone, @RequestParam("userName") String userName,
+			@RequestParam("messages") String messages, @RequestParam("vpwd") String vpwd, PrintWriter out,
+			HttpServletRequest request, HttpSession session) {
 		// 生成密钥
-		String encrypttext = request.getParameter("getMapKey");// 前台密文
-		String vpwd = RSAUtils.decryptStringByJs(encrypttext);
+		/*
+		 * String encrypttext = request.getParameter("getMapKey");// 前台密文 String
+		 * vpwd = RSAUtils.decryptStringByJs(encrypttext);
+		 */
 		String messagenum = (String) session.getAttribute(SessionAttribute.TELRLOGIN);
 		if (StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(phone) && StringUtils.isNotBlank(messages)
-				&& StringUtils.isNotBlank(vpwd)) {
-			// 不为空
+				&& StringUtils.isNotBlank(vpwd)) {// 不为空
 			VUser user = new VUser(UUIDUtil.createUUID(), userName, vpwd.trim(), phone, UserStatusEnum.normal,
 					UserVersioniEnum.common);
 			String resultPhone = uservice.selectPhone(phone);
 			if (StringUtils.isNotBlank(resultPhone)) {
-				map.put("result", 0);
-				map.put("desc", "该电话号码已经存在");
-				out.println(gson.toJson(map));
-				out.flush();
-				out.close();
+				return "register";
 			} else {
 				if (!messages.equalsIgnoreCase(messagenum)) {
-					map.put("result", 0);
-					map.put("desc", "您输入的验证码不正确！");
-					out.println(gson.toJson(map));
-					out.flush();
-					out.close();
+					return "register";
 				} else {
 					int result = uservice.register(user);
 					if (result > 0) {// 如果注册失败
-						map.put("result", 1);
-						map.put("desc", "注册成功！");
-						out.println(gson.toJson(map));
-						out.flush();
-						out.close();
 						return "reg_success";
 					} else {
-						map.put("result", 0);
-						map.put("desc", "注册失败！");
-						out.println(gson.toJson(map));
-						out.flush();
-						out.close();
+						return "register";
 					}
 				}
 			}
 		} else {
-			map.put("result", 0);
-			map.put("desc", "数据不能为空！");
-			out.println(gson.toJson(map));
-			out.flush();
-			out.close();
+			return "login";
 		}
-		return "reg_success";
 	}
 
 	/**
@@ -162,7 +140,7 @@ public class VUserhandler {
 			CouldMessage cl = new CouldMessage();
 			String num = getCharAndNumr(4);
 			session.setAttribute(SessionAttribute.TELRLOGIN, num);// 存入电话号码
-			cl.CouldMessageContent(phone, num);
+			// cl.CouldMessageContent(phone, num);
 			System.out.println(num);
 			map2.put("verificationCode", num);
 			map.put("result", 1);

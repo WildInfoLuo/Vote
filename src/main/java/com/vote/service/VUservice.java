@@ -1,7 +1,5 @@
 package com.vote.service;
 
-import java.util.List;
-
 import com.vote.entity.VUser;
 
 public interface VUservice {
@@ -19,7 +17,7 @@ public interface VUservice {
 	 * @param user
 	 * @return
 	 */
-	public List<VUser> login(VUser user);
+	public VUser login(VUser user);
 
 	/**
 	 * 查询是否存在该用户

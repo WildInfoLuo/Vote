@@ -1,13 +1,8 @@
-//添加格式验证
-$(function() {
-	$("#contents").validate();
-});
-
 // 获取验证码
 function sendcheckcode() {
 	var tel = $.trim($("#phoneId").val());
 	if (tel) {
-		$.post("../vuser/message", {
+		$.post("../Vote/vuser/message", {
 			tel : tel
 		}, function(data) {
 			alert(data.desc);
@@ -18,11 +13,11 @@ function sendcheckcode() {
 }
 
 // 点击注册
-$("#save").click(function() {
+function saves() {
 	var userName = $('#userName').val();// 用户名
 	var phoneId = $('#phoneId').val();// 手机号码
 	var messages = $('#messages').val();// 手机验证码
-	$.post("../vuser/produceRas", function(data) {
+	$.post("../../vuser/produceRas", function(data) {
 		if (data) {
 			var modulus = data.modulus;// 后台生成密钥对
 			var exponent = data.exponent;
@@ -30,16 +25,16 @@ $("#save").click(function() {
 			if (epwd.length != 256) {
 				var publicKey = RSAUtils.getKeyPair(exponent, '', modulus);
 				var getMapKey = RSAUtils.encryptedString(publicKey, epwd);// 根据公钥生成密文
-				$.post("../vuser/getKeyMap", {
+				$.post("../../vuser/getKeyMap", {
 					getMapKey : getMapKey,
 					userName : userName,
 					phoneId : phoneId,
 					messages : messages
 				}, function(data) {
-					alert(data.desc);
+					alert(data);
 				}, "json");
+				$("#save").submit();
 			}
-			$("#save").submit();
 		}
-	}, "json")
-});
+	}, "json");
+}

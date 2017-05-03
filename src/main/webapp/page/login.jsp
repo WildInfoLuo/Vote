@@ -5,12 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<base href="/Vote/" />
 <title></title>
-<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="page/css/style.css" />
 </head>
 <body>
 	<div id="header" class="wrap">
-		<img src="images/logo.gif" />
+		<img src="page/images/logo.gif" />
 	</div>
 	<div id="login" class="wrap">
 		<div class="main">
@@ -21,21 +22,21 @@
 			</div>
 			<div class="login">
 				<h2>用户登录</h2>
-				<form method="post" action="">
+				<form method="post" action="vuser/login">
 					<dl id="loginBox">
 						<dt>用户名：</dt>
 						<dd>
-							<input type="text" class="input-text" id="userId" value="" />
+							<input type="text" class="input-text" id="vuId"  name="vuId" value="" />
 						</dd>
 						<dt>密 码：</dt>
 						<dd>
-							<input type="password" class="input-text" id="password"
+							<input type="password" class="input-text" id="vupassword"  name="vupassword"
 								value="" />
 						</dd>
 						<dt></dt>
 						<dd>
-							<input type="button" class="input-button" name="submit" id="login"
-								value="登录" /> <a href="register.jsp">新用户注册</a>
+							<input type="submit" class="input-button" id="login"
+								value="登录" /> <a href="page/register.jsp">新用户注册</a>
 						</dd>
 					</dl>
 				</form>
@@ -45,8 +46,8 @@
 	</div>
 	<div class="wrap"></div>
 	<div id="footer" class="wrap">Wild &copy; 版权所有</div>
-	<script type="text/javascript" src="../../js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../js/security.js"></script>
-	<script type="text/javascript" src="../js/login.js"></script>
+	<script type="text/javascript" src="page/js/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="page/js/security.js"></script>
+	<script type="text/javascript" src="page/js/login.js"></script>
 </body>
 </html>
