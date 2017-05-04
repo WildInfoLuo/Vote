@@ -7,10 +7,17 @@
 </div>
 <div id="navbar" class="wrap">
 	<div class="profile">
-		您好，<%	%>
-		<span class="return"><a href="page/index.jsp">返回列表</a></span> <span
-			class="addnew"><a href="page/add.jsp">添加新投票</a></span> <span
-			class="modify"><a href="page/manage.jsp">维护</a></span>
+		<c:if test="${userLogin != null }">
+			<a>${userLogin.vuusername }，您好</a>
+		</c:if>
+		<c:if test="${userLogin == null }">
+			<a href="page/login.jsp">未登录</a>
+		</c:if>
+		<a href="" onclick="quitUser()">注销</a> 
+		<span class="return"><a
+			href="page/index.jsp">返回列表</a></span> <span class="addnew"><a
+			href="page/add.jsp">添加新投票</a></span> <span class="modify"><a
+			href="page/manage.jsp">维护</a></span>
 
 	</div>
 	<div class="search">
@@ -21,3 +28,4 @@
 		</form>
 	</div>
 </div>
+<script type="text/javascript" src="page/js/login.js"></script>

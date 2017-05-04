@@ -1,0 +1,117 @@
+<!-- 用户管理 -->
+<table id="file"></table>
+
+<!--修改用户信息 update_user -->
+<div id="update_file" class="easyui-dialog" title="修改用户信息" data-options="iconCls:'icon-edit',resizable:true,model:true,closed:true,fit:true">
+	<br />
+	<form action="" style="float:left;padding-left:20px;">
+		<label>文件编号:</label><span id="file_upid"  ></span><br /><br />
+		<label>文件名:</label><span  id="file_upname"  ></span><br /><br />
+		<label>文件路径:</label><input  id="file_upname" type="file"  /><br /><br />
+		<label>状态:</label><select id="file_upstatus" name="upstatus" ></select><br /><br />
+		<a href="javascript:updateUserInfo()"  class="easyui-linkbutton" data-options="iconCls:'icon-edit'" >修改</a>
+	</form>
+</div>
+
+
+<script>
+	var editRow=undefined; //记录当期正在编辑的行
+	var fileObj;
+	var picPath;//图片的路径
+	
+	userObj = $('#file').datagrid({
+		url : '../../file/findAllFilesByPages',
+		fitColumns : true,//true将自动扩展/收缩columns大小适应grid的宽度,防止水平滚动.
+		striped : true,//显示条纹所在行
+		loadMsg : "数据加载中...",//当从远程服务器加载数据的时候,显示的提示消息.
+		pagination : true,//分页
+		fit : true,//满屏
+		pageNumber : 1,//初始页码
+		pageSize : 10,//分页大小
+		pageList : [ 10, 20, 30, 40, 50 ],//设置属性
+		sortName : 'userid',//定义那个列可以排序.
+		sortOrder : 'asc',
+		remoteSort : false,//定义是否远程排序.对数据库进行操作
+		columns : [ [ {
+			field : 'userid',
+			title : '用户编号',
+			width : 60,
+			align : 'center',
+			sortable:true
+		}, {
+			field : 'uname',
+			title : '用户名',
+			width : 60,
+			align : 'center'
+		}, {
+			field : 'status',
+			title : '用户状态',
+			width : 50,
+			align : 'center'
+		
+		} ] ],
+		toolbar:[{
+			text:"修改",
+			iconCls:"icon-edit",
+			handler:function(){
+				var rows=userObj.datagrid("getChecked");
+				var row=userObj.datagrid("getChecked")[0];
+				if(rows.length>1||rows.length<=0){
+					$.messager.alert('友情提示','请选择一行数据进行修改','error');
+				}else{
+					if(editRow!=undefined){
+						if(editRow!=undefined){  //说明有行正在被编辑
+							userObj.datagrid("rejectChanges"); //回滚所有的数据
+							userObj.datagrid("endEdit",editRow); //关闭正在被编辑的行
+							editRow=undefined;
+						}
+					}else{
+						$("#user_upid").html(row.userid);
+						$('#user_upname').html(row.uname);
+						var count=$("#user_upstatus option").length;
+						for(var i=0;i<count;i++){
+							if(row.status=="0"){
+								if($("#user_upstatus").get(0).options[i].text=='已锁定'){
+									$("#user_upstatus").get(0).options[i].selected=true;
+								}
+							}else{
+								if($("#user_upstatus").get(0).options[i].text=='未锁定'){
+									$("#user_upstatus").get(0).options[i].selected=true;
+								}
+							}
+						}
+						$('#update_user').dialog('open');
+					}
+				}
+			}
+		}]
+	});
+	
+	$(function(){
+		var opt2 = "<option value='0'>已锁定</option><option value='1'>未锁定</option>";
+		$("#user_upstatus").append($(opt2));
+	});
+	
+	//修改用户信息
+	function updateUserInfo(){
+		var usid=$.trim($("#user_upid").html());
+		var status=$.trim($("#user_upstatus").val());
+		$.post("../../user/updateUserMsg",{usid:usid,status:status},function(data){
+			if(data>0){
+				$.messager.show({
+					title:'成功提示',
+					msg:'用户信息更新成功',
+					timeout:2000,
+					showType:'slide'
+				});
+				$('#update_user').dialog('close');
+				row=null;
+				userObj.datagrid("reload");
+			}else{
+				$.messager.alert('失败提示','用户信息更新失败','error');
+			}
+		},"json");
+		
+	}
+	
+</script>

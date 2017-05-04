@@ -51,7 +51,7 @@
 					</dd>
 				</dl>
 			</form>
-			<div class="error"></div>
+			<div class="error">${regErrorMsg }</div>
 		</div>
 	</div>
 	<div id="footer" class="wrap">Wild &copy; 版权所有</div>

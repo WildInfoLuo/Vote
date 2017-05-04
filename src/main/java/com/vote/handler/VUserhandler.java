@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,9 +42,14 @@ public class VUserhandler {
 	 * @return：登录页面
 	 */
 
+	@ModelAttribute
+	public void getModel(ModelMap map, HttpSession session) {
+		map.put(SessionAttribute.USERLOGIN, new VUser());
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam("vuId")String vuId, @RequestParam("vupassword") String vupassword,
-			HttpServletRequest request, PrintWriter out, HttpSession session) {
+	public String login(@RequestParam("vuId") String vuId, @RequestParam("vupassword") String vupassword,
+			HttpServletRequest request, PrintWriter out, HttpSession session, ModelMap map) {
 		VUser userLogin = new VUser();
 		// 如果有错误的话，那么将返回注册页面
 		if (StringUtils.isNotBlank(vuId) && StringUtils.isNotBlank(vupassword)) {
@@ -50,12 +57,14 @@ public class VUserhandler {
 			userLogin.setVupassword(vupassword);
 			VUser users = uservice.login(userLogin);
 			if (null != users) {
-				session.setAttribute(SessionAttribute.USERLOGIN, users.getVuusername());
+				session.setAttribute(SessionAttribute.USERLOGIN, users);
 				return "index";
 			} else {
+				map.put("regErrorMsg", "用户名或密码错误");
 				return "login";
 			}
 		} else {
+			map.put("regErrorMsg", "数据为空");
 			return "login";
 		}
 	}
@@ -84,7 +93,7 @@ public class VUserhandler {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String getKeyMap(@RequestParam("phoneId") String phone, @RequestParam("userName") String userName,
 			@RequestParam("messages") String messages, @RequestParam("vpwd") String vpwd, PrintWriter out,
-			HttpServletRequest request, HttpSession session) {
+			HttpServletRequest request, HttpSession session, ModelMap map) {
 		// 生成密钥
 		/*
 		 * String encrypttext = request.getParameter("getMapKey");// 前台密文 String
@@ -93,8 +102,13 @@ public class VUserhandler {
 		String messagenum = (String) session.getAttribute(SessionAttribute.TELRLOGIN);
 		if (StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(phone) && StringUtils.isNotBlank(messages)
 				&& StringUtils.isNotBlank(vpwd)) {// 不为空
-			VUser user = new VUser(UUIDUtil.createUUID(), userName, vpwd.trim(), phone, UserStatusEnum.normal,
-					UserVersioniEnum.common);
+			VUser user = new VUser();
+			user.setVuId(UUIDUtil.createUUID());
+			user.setVphone(phone);
+			user.setVupassword(vpwd);
+			user.setVuusername(userName);
+			user.setVuversion(UserVersioniEnum.common);
+			user.setVustatus(UserStatusEnum.normal);
 			String resultPhone = uservice.selectPhone(phone);
 			if (StringUtils.isNotBlank(resultPhone)) {
 				return "register";
@@ -104,14 +118,17 @@ public class VUserhandler {
 				} else {
 					int result = uservice.register(user);
 					if (result > 0) {// 如果注册失败
+						session.setAttribute(SessionAttribute.USERLOGIN, user.getVuusername());
 						return "reg_success";
 					} else {
+						map.put("regErrorMsg", "注册失败");
 						return "register";
 					}
 				}
 			}
 		} else {
-			return "login";
+			map.put("regErrorMsg", "数据为空");
+			return "register";
 		}
 	}
 
@@ -151,6 +168,15 @@ public class VUserhandler {
 			out.flush();
 			out.close();
 		}
+	}
+
+	// 用户注销
+	@RequestMapping(value = "/Userquit", method = RequestMethod.POST)
+	public void Userquit(HttpSession session, PrintWriter out) {
+		session.removeAttribute(SessionAttribute.USERLOGIN);
+		out.println(1);
+		out.flush();
+		out.close();
 	}
 
 	/**

@@ -40,7 +40,7 @@
 						</dd>
 					</dl>
 				</form>
-				<div class="error"></div>
+			<div class="error">${regErrorMsg }</div>
 			</div>
 		</div>
 	</div>
