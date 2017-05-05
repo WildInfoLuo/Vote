@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<base href="/VCloud/page/back/">
+<base href="/Vote/page/back/">
 <title>Vote后台管理系统</title>
 <link rel="stylesheet" type="text/css" href="css/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/icon.css">

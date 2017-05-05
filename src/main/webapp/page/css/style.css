@@ -430,7 +430,7 @@ a:hover, a:active {
 	width: 380px;
 }
 
-#voteManage dl dd .del {
+#voteManage dl dd .removeclass {
 	font-size: 12px;
 	margin: 0px 5px;
 }

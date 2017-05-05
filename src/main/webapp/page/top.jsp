@@ -23,7 +23,7 @@
 	<div class="search">
 		<form method="post" action="Subject!search.action">
 			<input type="text" name="keywords" class="input-text"
-				value="<s:property value='keywords'/>" /><input type="submit"
+				value="" /><input type="submit"
 				name="submit" class="input-button" value="" />
 		</form>
 	</div>

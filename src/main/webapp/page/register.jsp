@@ -55,8 +55,7 @@
 		</div>
 	</div>
 	<div id="footer" class="wrap">Wild &copy; 版权所有</div>
-	<script type="text/javascript" src="page/js/js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="page/js/security.js"></script>
+	<script type="text/javascript" src="page/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="page/js/register.js"></script>
 </body>
 </html>

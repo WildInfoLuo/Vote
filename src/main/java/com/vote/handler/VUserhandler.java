@@ -41,12 +41,6 @@ public class VUserhandler {
 	 * 
 	 * @return：登录页面
 	 */
-
-	@ModelAttribute
-	public void getModel(ModelMap map, HttpSession session) {
-		map.put(SessionAttribute.USERLOGIN, new VUser());
-	}
-
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@RequestParam("vuId") String vuId, @RequestParam("vupassword") String vupassword,
 			HttpServletRequest request, PrintWriter out, HttpSession session, ModelMap map) {
@@ -58,6 +52,7 @@ public class VUserhandler {
 			VUser users = uservice.login(userLogin);
 			if (null != users) {
 				session.setAttribute(SessionAttribute.USERLOGIN, users);
+				//map.put("usersLogin", users.getVuusername());
 				return "index";
 			} else {
 				map.put("regErrorMsg", "用户名或密码错误");
@@ -94,11 +89,6 @@ public class VUserhandler {
 	public String getKeyMap(@RequestParam("phoneId") String phone, @RequestParam("userName") String userName,
 			@RequestParam("messages") String messages, @RequestParam("vpwd") String vpwd, PrintWriter out,
 			HttpServletRequest request, HttpSession session, ModelMap map) {
-		// 生成密钥
-		/*
-		 * String encrypttext = request.getParameter("getMapKey");// 前台密文 String
-		 * vpwd = RSAUtils.decryptStringByJs(encrypttext);
-		 */
 		String messagenum = (String) session.getAttribute(SessionAttribute.TELRLOGIN);
 		if (StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(phone) && StringUtils.isNotBlank(messages)
 				&& StringUtils.isNotBlank(vpwd)) {// 不为空
@@ -118,7 +108,6 @@ public class VUserhandler {
 				} else {
 					int result = uservice.register(user);
 					if (result > 0) {// 如果注册失败
-						session.setAttribute(SessionAttribute.USERLOGIN, user.getVuusername());
 						return "reg_success";
 					} else {
 						map.put("regErrorMsg", "注册失败");
