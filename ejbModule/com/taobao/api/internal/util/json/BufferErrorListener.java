@@ -13,12 +13,14 @@ public class BufferErrorListener implements JSONErrorListener {
         this(new StringBuffer());
     }
     
-    public void start(String input) {
+    @Override
+	public void start(String input) {
         this.input = input;
         buffer.setLength(0);
     }
 
-    public void error(String type, int col) {
+    @Override
+	public void error(String type, int col) {
         buffer.append("expected ");
         buffer.append(type);
         buffer.append(" at column ");
@@ -36,6 +38,7 @@ public class BufferErrorListener implements JSONErrorListener {
         }
     }
 
-    public void end() {
+    @Override
+	public void end() {
     }
 }

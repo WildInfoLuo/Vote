@@ -32,10 +32,12 @@ public class TopatsResultGetRequest extends BaseTaobaoRequest<TopatsResultGetRes
 		return this.taskId;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.topats.result.get";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("task_id", this.taskId);
@@ -45,10 +47,12 @@ public class TopatsResultGetRequest extends BaseTaobaoRequest<TopatsResultGetRes
 		return txtParams;
 	}
 
+	@Override
 	public Class<TopatsResultGetResponse> getResponseClass() {
 		return TopatsResultGetResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(taskId, "taskId");
 	}

@@ -71,10 +71,12 @@ public class AlibabaAliqinFcVoiceNumSinglecallRequest extends BaseTaobaoRequest<
 		return this.voiceCode;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "alibaba.aliqin.fc.voice.num.singlecall";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("called_num", this.calledNum);
@@ -87,10 +89,12 @@ public class AlibabaAliqinFcVoiceNumSinglecallRequest extends BaseTaobaoRequest<
 		return txtParams;
 	}
 
+	@Override
 	public Class<AlibabaAliqinFcVoiceNumSinglecallResponse> getResponseClass() {
 		return AlibabaAliqinFcVoiceNumSinglecallResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(calledNum, "calledNum");
 		RequestCheckUtils.checkNotEmpty(calledShowNum, "calledShowNum");

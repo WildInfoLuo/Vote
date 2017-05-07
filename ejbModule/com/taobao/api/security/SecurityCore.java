@@ -194,7 +194,8 @@ public class SecurityCore {
                 asynQueneKey.add(cacheKey);
 
                 asynUpdateSecret.submit(new Runnable() {
-                    public void run() {
+                    @Override
+					public void run() {
                         try {
                             callSecretApi(session, secretVersion);
                         } catch (ApiException e) {

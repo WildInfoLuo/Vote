@@ -16,7 +16,8 @@ public class JSONValidatingReader extends JSONReader {
         this(new StdoutStreamErrorListener());
     }
 
-    public Object read(String string) {
+    @Override
+	public Object read(String string) {
         if (!validator.validate(string)) return INVALID;
         return super.read(string);
     }

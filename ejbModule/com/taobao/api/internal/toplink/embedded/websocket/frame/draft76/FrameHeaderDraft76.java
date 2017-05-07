@@ -58,6 +58,7 @@ public class FrameHeaderDraft76 implements FrameHeader {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.FrameHeader#getFrameLength()
 	 */
+	@Override
 	public long getFrameLength(){
 		return headerLength + bodyLength;
 	}
@@ -74,6 +75,7 @@ public class FrameHeaderDraft76 implements FrameHeader {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.FrameHeader#getContentsLength()
 	 */
+	@Override
 	public long getContentsLength(){
 		return bodyLength;
 	}
@@ -90,6 +92,7 @@ public class FrameHeaderDraft76 implements FrameHeader {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.FrameHeader#toByteBuffer()
 	 */
+	@Override
 	public ByteBuffer toByteBuffer(){
 		ByteBuffer buf = ByteBuffer.allocate(1);
 		buf.put(frameType);

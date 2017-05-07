@@ -37,6 +37,7 @@ public class ClusterTaobaoClient extends DefaultTaobaoClient {
 		ClusterManager.initRefreshThread(this);
 	}
 
+	@Override
 	public String getServerUrl(String serverUrl, String apiName, String session,TaobaoHashMap appParams) {
 		DnsConfig dnsConfig = ClusterManager.GetDnsConfigFromCache();
 		if (dnsConfig == null) {
@@ -46,6 +47,7 @@ public class ClusterTaobaoClient extends DefaultTaobaoClient {
 		}
 	}
 
+	@Override
 	protected String getSdkVersion() {
 		return Constants.SDK_VERSION_CLUSTER;
 	}

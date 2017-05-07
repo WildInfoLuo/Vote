@@ -50,10 +50,12 @@ public class AutoRetryTaobaoClient extends DefaultTaobaoClient {
 		super(serverUrl, appKey, appSecret, format, connectTimeout, readTimeout, signMethod);
 	}
 
+	@Override
 	public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request) throws ApiException {
 		return this.execute(request, null);
 	}
 
+	@Override
 	public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String session) throws ApiException {
 		T rsp = null;
 		ApiException exp = null;

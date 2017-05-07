@@ -79,6 +79,7 @@ public class TextFrame extends FrameDraft06 {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString(){
 		if(convertedString == null){
 			try{

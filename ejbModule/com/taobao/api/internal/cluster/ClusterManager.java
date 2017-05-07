@@ -50,6 +50,7 @@ public final class ClusterManager {
 					}
 
 					refreshThread = new Thread(new Runnable() {
+						@Override
 						public void run() {
 							while (true) {
 								try {

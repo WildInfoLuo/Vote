@@ -97,10 +97,12 @@ public class AlibabaAliqinFcVoiceNumDoublecallRequest extends BaseTaobaoRequest<
 		return this.sessionTimeOut;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "alibaba.aliqin.fc.voice.num.doublecall";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("called_num", this.calledNum);
@@ -115,10 +117,12 @@ public class AlibabaAliqinFcVoiceNumDoublecallRequest extends BaseTaobaoRequest<
 		return txtParams;
 	}
 
+	@Override
 	public Class<AlibabaAliqinFcVoiceNumDoublecallResponse> getResponseClass() {
 		return AlibabaAliqinFcVoiceNumDoublecallResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(calledNum, "calledNum");
 		RequestCheckUtils.checkNotEmpty(calledShowNum, "calledShowNum");

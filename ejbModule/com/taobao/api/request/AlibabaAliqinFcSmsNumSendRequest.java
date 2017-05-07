@@ -1,6 +1,5 @@
 package com.taobao.api.request;
 
-import com.taobao.api.internal.util.json.JSONValidatingReader;
 import com.taobao.api.internal.util.RequestCheckUtils;
 import java.util.Map;
 
@@ -101,10 +100,12 @@ public class AlibabaAliqinFcSmsNumSendRequest extends BaseTaobaoRequest<AlibabaA
 		return this.smsType;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "alibaba.aliqin.fc.sms.num.send";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("extend", this.extend);
@@ -119,10 +120,12 @@ public class AlibabaAliqinFcSmsNumSendRequest extends BaseTaobaoRequest<AlibabaA
 		return txtParams;
 	}
 
+	@Override
 	public Class<AlibabaAliqinFcSmsNumSendResponse> getResponseClass() {
 		return AlibabaAliqinFcSmsNumSendResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(recNum, "recNum");
 		RequestCheckUtils.checkNotEmpty(smsFreeSignName, "smsFreeSignName");

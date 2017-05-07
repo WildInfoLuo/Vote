@@ -58,17 +58,21 @@ public class TaobaoBatchRequest extends BaseTaobaoRequest<TaobaoBatchResponse> {
 		return this;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return null;
 	}
 
+	@Override
 	public Class<TaobaoBatchResponse> getResponseClass() {
 		return TaobaoBatchResponse.class;
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {
 		return null;
 	}

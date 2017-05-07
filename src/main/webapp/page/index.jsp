@@ -17,7 +17,7 @@
 	
 		<li>
 			<h4>				
-				<a href="Vote!view.action?entityId=<s:property value='id'/>"><s:property value="title"/></a>
+				<a href="page/view.jsp">sdfsdf<s:property value="title"/></a>
 			</h4>
 			<div class="join"><a href="Vote.action?entityId=<s:property value='id'/>">我要参与</a></div>
 			<p class="info">共有 <s:property value="options.size"/> 个选项，已有 <s:property value="votes[id]"/> 个网友参与了投票。</p>

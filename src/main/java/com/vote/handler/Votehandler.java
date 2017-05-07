@@ -1,10 +1,6 @@
 package com.vote.handler;
 
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,22 +8,10 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.google.gson.Gson;
-import com.vote.entity.VUser;
-import com.vote.enums.UserStatusEnum;
-import com.vote.enums.UserVersioniEnum;
-import com.vote.service.VUservice;
-import com.vote.service.Voteservice;
-import com.vote.utils.CouldMessage;
-import com.vote.utils.PublicKeyMap;
-import com.vote.utils.RSAUtils;
-import com.vote.utils.SessionAttribute;
+import com.vote.entity.VoteSubject;
+import com.vote.service.VoteService;
 import com.vote.utils.UUIDUtil;
 
 @Controller
@@ -35,6 +19,30 @@ import com.vote.utils.UUIDUtil;
 public class Votehandler {
 
 	@Autowired
-	private Voteservice votesvice;
+	private VoteService votesvice;
+
+	@RequestMapping(value = "/insertVote", method = RequestMethod.POST)
+	public String insertVote(String titleContent, String subjectType, String options, String mytext[],
+			HttpServletRequest request, PrintWriter out, HttpSession session, ModelMap map) {
+		VoteSubject subject = new VoteSubject();
+		//request.getInputStream();
+		// 如果有错误的话，那么将返回注册页面
+		if (StringUtils.isNotBlank(titleContent) && StringUtils.isNotBlank(subjectType)) {
+			subject.setVsid(UUIDUtil.createUUID());
+			subject.setVstitle(titleContent);
+			subject.setVs_Type(subjectType);
+			int usersResult = votesvice.insertVote(subject);
+			if (usersResult > 0) {
+				// map.put("usersLogin", users.getVuusername());
+				return "index";
+			} else {
+				map.put("regErrorMsg", "添加失败");
+				return "add";
+			}
+		} else {
+			map.put("regErrorMsg", "数据为空");
+			return "add";
+		}
+	}
 
 }

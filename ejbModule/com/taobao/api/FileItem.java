@@ -111,22 +111,27 @@ public class FileItem {
 			this.file = file;
 		}
 
+		@Override
 		public boolean isValid() {
 			return this.file != null && this.file.exists() && this.file.isFile();
 		}
 
+		@Override
 		public String getFileName() {
 			return this.file.getName();
 		}
 
+		@Override
 		public String getMimeType() {
 			return Constants.MIME_TYPE_DEFAULT;
 		}
 
+		@Override
 		public long getFileLength() {
 			return this.file.length();
 		}
 
+		@Override
 		public void write(OutputStream output) throws IOException {
 			InputStream input = null;
 			try {
@@ -155,14 +160,17 @@ public class FileItem {
 			this.mimeType = mimeType;
 		}
 
+		@Override
 		public boolean isValid() {
 			return this.content != null && this.fileName != null;
 		}
 
+		@Override
 		public String getFileName() {
 			return this.fileName;
 		}
 
+		@Override
 		public String getMimeType() {
 			if (this.mimeType == null) {
 				return Constants.MIME_TYPE_DEFAULT;
@@ -171,10 +179,12 @@ public class FileItem {
 			}
 		}
 
+		@Override
 		public long getFileLength() {
 			return this.content.length;
 		}
 
+		@Override
 		public void write(OutputStream output) throws IOException {
 			output.write(this.content);
 		}
@@ -191,14 +201,17 @@ public class FileItem {
 			this.mimeType = mimeType;
 		}
 
+		@Override
 		public boolean isValid() {
 			return this.stream != null && this.fileName != null;
 		}
 
+		@Override
 		public String getFileName() {
 			return this.fileName;
 		}
 
+		@Override
 		public String getMimeType() {
 			if (this.mimeType == null) {
 				return Constants.MIME_TYPE_DEFAULT;
@@ -207,10 +220,12 @@ public class FileItem {
 			}
 		}
 
+		@Override
 		public long getFileLength() {
 			return 0L;
 		}
 
+		@Override
 		public void write(OutputStream output) throws IOException {
 			try {
 				byte[] buffer = new byte[Constants.READ_BUFFER_SIZE];

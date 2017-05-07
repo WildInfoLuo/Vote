@@ -26,7 +26,7 @@
 					</li>
 				  </s:iterator>	
 				</ol>
-				<div class="goback"><a href="Subject!list.action?entityId=<s:property value='subject.id'/>">返回投票列表</a></div>
+				<div class="goback"><a href="page/index.jsp">返回投票列表</a></div>
 		</li>
 	</ul>
 </div>

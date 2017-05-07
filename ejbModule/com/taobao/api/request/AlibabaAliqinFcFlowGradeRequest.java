@@ -18,10 +18,12 @@ public class AlibabaAliqinFcFlowGradeRequest extends BaseTaobaoRequest<AlibabaAl
 	
 	
 
+	@Override
 	public String getApiMethodName() {
 		return "alibaba.aliqin.fc.flow.grade";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		if(this.udfParams != null) {
@@ -30,10 +32,12 @@ public class AlibabaAliqinFcFlowGradeRequest extends BaseTaobaoRequest<AlibabaAl
 		return txtParams;
 	}
 
+	@Override
 	public Class<AlibabaAliqinFcFlowGradeResponse> getResponseClass() {
 		return AlibabaAliqinFcFlowGradeResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 	}
 	

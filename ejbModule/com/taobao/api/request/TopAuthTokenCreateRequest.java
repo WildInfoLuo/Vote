@@ -45,10 +45,12 @@ public class TopAuthTokenCreateRequest extends BaseTaobaoRequest<TopAuthTokenCre
 		return this.uuid;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.top.auth.token.create";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("code", this.code);
@@ -59,10 +61,12 @@ public class TopAuthTokenCreateRequest extends BaseTaobaoRequest<TopAuthTokenCre
 		return txtParams;
 	}
 
+	@Override
 	public Class<TopAuthTokenCreateResponse> getResponseClass() {
 		return TopAuthTokenCreateResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(code, "code");
 	}

@@ -376,7 +376,7 @@ public class FrameBuilderDraft06 {
 			payloadLength = body.length;
 		}
 		PayloadLengthType payloadLengthType = PayloadLengthType.valueOf(payloadLength);
-		return new FrameHeaderDraft06(false, 2, payloadLengthType, (int)payloadLength, opcode);
+		return new FrameHeaderDraft06(false, 2, payloadLengthType, payloadLength, opcode);
 	}
 	
 	/**

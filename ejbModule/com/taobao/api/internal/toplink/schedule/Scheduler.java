@@ -61,6 +61,7 @@ public class Scheduler<T> {
 
 		this.running = true;
 		this.dispatcher = new Thread(new Runnable() {
+			@Override
 			public void run() {
 				while (running) {
 					try {

@@ -32,10 +32,12 @@ public class TopAuthTokenRefreshRequest extends BaseTaobaoRequest<TopAuthTokenRe
 		return this.refreshToken;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.top.auth.token.refresh";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("refresh_token", this.refreshToken);
@@ -45,10 +47,12 @@ public class TopAuthTokenRefreshRequest extends BaseTaobaoRequest<TopAuthTokenRe
 		return txtParams;
 	}
 
+	@Override
 	public Class<TopAuthTokenRefreshResponse> getResponseClass() {
 		return TopAuthTokenRefreshResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(refreshToken, "refreshToken");
 	}

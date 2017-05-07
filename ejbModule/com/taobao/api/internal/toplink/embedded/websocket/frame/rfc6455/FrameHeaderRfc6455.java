@@ -98,6 +98,7 @@ public class FrameHeaderRfc6455 implements FrameHeader {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.FrameHeader#getFrameLength()
 	 */
+	@Override
 	public long getFrameLength(){
 		return headerLength + payloadLength;
 	}
@@ -114,6 +115,7 @@ public class FrameHeaderRfc6455 implements FrameHeader {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.FrameHeader#getContentsLength()
 	 */
+	@Override
 	public long getContentsLength(){
 		return payloadLength;
 	}
@@ -166,6 +168,7 @@ public class FrameHeaderRfc6455 implements FrameHeader {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.FrameHeader#toByteBuffer()
 	 */
+	@Override
 	public ByteBuffer toByteBuffer(){
 			ByteBuffer buf = ByteBuffer.allocate(2 + payloadLengthType.offset());
 			buf.put((byte)((fragmented ? 0 : 0x80) | opcode.intValue()));

@@ -22,6 +22,10 @@ public class VoteSubject implements Serializable {
 		Vs_Type = vs_Type;
 	}
 
+	public VoteSubject() {
+		super();
+	}
+
 	public String getVsid() {
 		return Vsid;
 	}

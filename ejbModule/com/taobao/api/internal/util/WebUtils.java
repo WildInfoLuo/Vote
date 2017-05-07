@@ -43,13 +43,16 @@ public abstract class WebUtils {
 	private static boolean ignoreHostCheck = true; // 忽略HOST检查
 
 	public static class TrustAllTrustManager implements X509TrustManager {
+		@Override
 		public X509Certificate[] getAcceptedIssuers() {
 			return null;
 		}
 
+		@Override
 		public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 		}
 
+		@Override
 		public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 		}
 	}
@@ -310,6 +313,7 @@ public abstract class WebUtils {
 					ctx.init(null, new TrustManager[] { new TrustAllTrustManager() }, new SecureRandom());
 					connHttps.setSSLSocketFactory(ctx.getSocketFactory());
 					connHttps.setHostnameVerifier(new HostnameVerifier() {
+						@Override
 						public boolean verify(String hostname, SSLSession session) {
 							return true;
 						}
@@ -320,6 +324,7 @@ public abstract class WebUtils {
 			} else {
 				if (ignoreHostCheck) {
 					connHttps.setHostnameVerifier(new HostnameVerifier() {
+						@Override
 						public boolean verify(String hostname, SSLSession session) {
 							return true;
 						}

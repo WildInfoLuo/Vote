@@ -25,6 +25,7 @@ import com.taobao.api.internal.util.XmlUtils;
  */
 public class XmlConverter implements Converter {
 
+	@Override
 	public <T extends AliyunResponse> T toResponse(String rsp, Class<T> clazz) throws ApiException {
 		Element root = XmlUtils.getRootElementFromString(rsp);
 		return getModelFromXML(root, clazz);
@@ -35,15 +36,18 @@ public class XmlConverter implements Converter {
 			return null;
 
 		return Converters.convert(clazz, new Reader() {
+			@Override
 			public boolean hasReturnField(Object name) {
 				Element childE = XmlUtils.getChildElement(element, (String) name);
 				return childE != null;
 			}
 
+			@Override
 			public Object getPrimitiveObject(Object name) {
 				return XmlUtils.getChildElementValue(element, (String) name);
 			}
 
+			@Override
 			public Object getObject(Object name, Class<?> type) throws ApiException {
 				Element childE = XmlUtils.getChildElement(element, (String) name);
 				if (childE != null) {
@@ -53,6 +57,7 @@ public class XmlConverter implements Converter {
 				}
 			}
 
+			@Override
 			public List<?> getListObjects(Object listName, Object itemName, Class<?> subType) throws ApiException {
 				List<Object> list = null;
 				Element listE = XmlUtils.getChildElement(element, (String) listName);

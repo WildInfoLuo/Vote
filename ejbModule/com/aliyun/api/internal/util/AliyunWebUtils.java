@@ -42,13 +42,16 @@ public abstract class AliyunWebUtils {
 	private static final String METHOD_GET = "GET";
 
 	private static class DefaultTrustManager implements X509TrustManager {
+		@Override
 		public X509Certificate[] getAcceptedIssuers() {
 			return null;
 		}
 
+		@Override
 		public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 		}
 
+		@Override
 		public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 		}
 	}
@@ -302,6 +305,7 @@ public abstract class AliyunWebUtils {
 			HttpsURLConnection connHttps = (HttpsURLConnection) url.openConnection();
 			connHttps.setSSLSocketFactory(ctx.getSocketFactory());
 			connHttps.setHostnameVerifier(new HostnameVerifier() {
+				@Override
 				public boolean verify(String hostname, SSLSession session) {
 					return true;// 默认都认证通过
 				}

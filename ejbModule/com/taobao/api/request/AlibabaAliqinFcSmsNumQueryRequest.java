@@ -84,10 +84,12 @@ public class AlibabaAliqinFcSmsNumQueryRequest extends BaseTaobaoRequest<Alibaba
 		return this.recNum;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "alibaba.aliqin.fc.sms.num.query";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("biz_id", this.bizId);
@@ -101,10 +103,12 @@ public class AlibabaAliqinFcSmsNumQueryRequest extends BaseTaobaoRequest<Alibaba
 		return txtParams;
 	}
 
+	@Override
 	public Class<AlibabaAliqinFcSmsNumQueryResponse> getResponseClass() {
 		return AlibabaAliqinFcSmsNumQueryResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(currentPage, "currentPage");
 		RequestCheckUtils.checkNotEmpty(pageSize, "pageSize");

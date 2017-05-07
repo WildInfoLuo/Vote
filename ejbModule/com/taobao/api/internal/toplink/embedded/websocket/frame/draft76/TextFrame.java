@@ -95,6 +95,7 @@ public class TextFrame extends FrameDraft76 {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.Frame#toByteBuffer()
 	 */
+	@Override
 	public ByteBuffer toByteBuffer() {
 		ByteBuffer buf = ByteBuffer.allocate(1 + contents.length + 1);
 		buf.put(header.toByteBuffer());
@@ -107,6 +108,7 @@ public class TextFrame extends FrameDraft76 {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString(){
 		if(convertedString == null){
 			try{

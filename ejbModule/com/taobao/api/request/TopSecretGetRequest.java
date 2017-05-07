@@ -45,10 +45,12 @@ public class TopSecretGetRequest extends BaseTaobaoRequest<TopSecretGetResponse>
 		return this.secretVersion;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.top.secret.get";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("random_num", this.randomNum);
@@ -59,10 +61,12 @@ public class TopSecretGetRequest extends BaseTaobaoRequest<TopSecretGetResponse>
 		return txtParams;
 	}
 
+	@Override
 	public Class<TopSecretGetResponse> getResponseClass() {
 		return TopSecretGetResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(randomNum, "randomNum");
 	}

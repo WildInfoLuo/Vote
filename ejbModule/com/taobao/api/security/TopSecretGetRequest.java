@@ -25,11 +25,13 @@ public class TopSecretGetRequest extends BaseTaobaoRequest<TopSecretGetResponse>
         this.secretVersion = secretVersion;
     }
 
-    public String getApiMethodName() {
+    @Override
+	public String getApiMethodName() {
         return "taobao.top.secret.get";
     }
 
-    public Map<String, String> getTextParams() {
+    @Override
+	public Map<String, String> getTextParams() {
         TaobaoHashMap params = new TaobaoHashMap();
         params.put("random_num", this.randomNum);
         if (this.secretVersion != null) {
@@ -38,11 +40,13 @@ public class TopSecretGetRequest extends BaseTaobaoRequest<TopSecretGetResponse>
         return params;
     }
 
-    public Class<TopSecretGetResponse> getResponseClass() {
+    @Override
+	public Class<TopSecretGetResponse> getResponseClass() {
         return TopSecretGetResponse.class;
     }
 
-    public void check() throws ApiRuleException {
+    @Override
+	public void check() throws ApiRuleException {
         RequestCheckUtils.checkNotEmpty(randomNum, "random_num");
     }
 

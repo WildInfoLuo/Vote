@@ -18,10 +18,12 @@ public class AppipGetRequest extends BaseTaobaoRequest<AppipGetResponse> {
 	
 	
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.appip.get";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		if(this.udfParams != null) {
@@ -30,10 +32,12 @@ public class AppipGetRequest extends BaseTaobaoRequest<AppipGetResponse> {
 		return txtParams;
 	}
 
+	@Override
 	public Class<AppipGetResponse> getResponseClass() {
 		return AppipGetResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 	}
 	

@@ -71,10 +71,12 @@ public class AlibabaAliqinFcFlowChargeProvinceRequest extends BaseTaobaoRequest<
 		return this.reason;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "alibaba.aliqin.fc.flow.charge.province";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("grade", this.grade);
@@ -87,10 +89,12 @@ public class AlibabaAliqinFcFlowChargeProvinceRequest extends BaseTaobaoRequest<
 		return txtParams;
 	}
 
+	@Override
 	public Class<AlibabaAliqinFcFlowChargeProvinceResponse> getResponseClass() {
 		return AlibabaAliqinFcFlowChargeProvinceResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(grade, "grade");
 		RequestCheckUtils.checkNotEmpty(outRechargeId, "outRechargeId");

@@ -115,7 +115,8 @@ public class SSLHandshake {
             throw new WebSocketException(E3812, e);
         }
         delegatedTaskExecutor = Executors.newCachedThreadPool(new ThreadFactory() {
-            public Thread newThread(Runnable r) {
+            @Override
+			public Thread newThread(Runnable r) {
                 Thread t = new Thread(r, "SSL DelegateTask");
                 t.setDaemon(true);
                 return t;
@@ -132,7 +133,8 @@ public class SSLHandshake {
             this.localBuffer = ByteBuffer.allocate(currentBufferSize);
         }
 
-        public String toString(){
+        @Override
+		public String toString(){
             return "netBuffer: " + netBuffer + ", localBuffer: " + localBuffer;
         }
     }
@@ -177,7 +179,8 @@ public class SSLHandshake {
                     case NEED_WRAP:
                         hb.netBuffer.clear();
                         doCallbackIncreaseBufferProcess(new HandshakeCallback() {
-                            public SSLEngineResult execute(HandshakeBuffer hb) throws SSLException {
+                            @Override
+							public SSLEngineResult execute(HandshakeBuffer hb) throws SSLException {
                                 return engine.wrap(hb.localBuffer, hb.netBuffer);
                             }
                         }, hb);
@@ -200,7 +203,8 @@ public class SSLHandshake {
                         SSLEngineResult res = null;
                         do {
                             res = doCallbackIncreaseBufferProcess(new HandshakeCallback() {
-                                public SSLEngineResult execute(HandshakeBuffer hb) throws SSLException {
+                                @Override
+								public SSLEngineResult execute(HandshakeBuffer hb) throws SSLException {
                                     return engine.unwrap(hb.netBuffer, hb.localBuffer);
                                 }
                             }, hb);

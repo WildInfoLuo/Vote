@@ -14,7 +14,7 @@
 	<div id="voteManage" class="box">
 		<h2>添加新投票</h2>
 		<div class="content">
-			<form method="post" action="">
+			<form method="post" action="vote/insertVote">
 				<dl>
 					<dt>投票内容：</dt>
 					<dd>
@@ -23,8 +23,8 @@
 					</dd>
 					<dt>投票类型：</dt>
 					<dd>
-						<input type="radio" name="type" value="1" />单选 <input
-							type="radio" name="subject.type" value="2" />多选
+						<input type="radio" name="subjectType" value="1" />单选 <input
+							type="radio" name="subjectType" value="2" />多选
 					</dd>
 					<dt>投票选项：</dt>
 					<dd id="voteoptions">
@@ -35,9 +35,6 @@
 							<input type="text" class="input-text" name="mytext[]"
 								id="field_1" value="" />
 						</p>
-					</dd>
-					<dd id="voteoptions">
-						
 					</dd>
 					<dd id="voteoptions"></dd> 
 					<dt></dt>

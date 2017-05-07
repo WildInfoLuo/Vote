@@ -77,6 +77,7 @@ public class DefaultAliyunClient implements AliyunClient {
 		this.executorService = executorService;
 	}
 	
+	@Override
 	public <T extends AliyunResponse> T execute(AliyunRequest<T> request) throws ApiException {
 		AliyunParser<T> parser = null;
 		if (this.needEnableParser) {
@@ -89,6 +90,7 @@ public class DefaultAliyunClient implements AliyunClient {
 		return _execute(request, parser);
 	}
 	
+	@Override
 	public <T extends AliyunResponse> Future<T> executeAsync(
 			final AliyunRequest<T> request,
 			final AliyunAsyncHandler<T> asyncHandler) throws ApiException {
@@ -102,6 +104,7 @@ public class DefaultAliyunClient implements AliyunClient {
 		}
 		
 		return executorService.submit(new Callable<T>() {
+			@Override
 			public T call() throws ApiException {
 				T response;
 				try {

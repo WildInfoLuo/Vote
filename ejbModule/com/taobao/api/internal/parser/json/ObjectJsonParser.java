@@ -25,6 +25,7 @@ public class ObjectJsonParser<T extends TaobaoResponse> implements TaobaoParser<
 		this.simplify = simplify;
 	}
 
+	@Override
 	public T parse(String rsp) throws ApiException {
 		Converter converter;
 		if (this.simplify) {
@@ -35,6 +36,7 @@ public class ObjectJsonParser<T extends TaobaoResponse> implements TaobaoParser<
 		return converter.toResponse(rsp, clazz);
 	}
 
+	@Override
 	public Class<T> getResponseClass() {
 		return clazz;
 	}

@@ -138,6 +138,7 @@ public class WebSocketDraft06 extends WebSocketBase {
 		super.initializePipeline(pipeline);
 		// Add base response handler
 		pipeline.addStreamHandler(new StreamHandlerAdapter() {
+			@Override
 			public void nextDownstreamHandler(WebSocket ws, ByteBuffer buffer,
 					Frame frame, StreamHandlerChain chain) throws WebSocketException {
 				if(frame instanceof CloseFrame){
@@ -150,6 +151,7 @@ public class WebSocketDraft06 extends WebSocketBase {
 				}
 			}
 
+			@Override
 			public void nextHandshakeDownstreamHandler(WebSocket ws, ByteBuffer buffer,
 					StreamHandlerChain chain) throws WebSocketException {
 				// set response status

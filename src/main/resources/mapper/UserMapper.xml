@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vote.mapper.VUserMapper">
 	<insert id="register" parameterType="VUser">
-		insert into VoteUser
+		insert into "VoteUser"
 		(vuId,vuUsername,vuPassword,vuStatus,vuVersion,vphone)
 		values(#{vuId},#{vuusername},#{vupassword},#{Vustatus},#{vuversion},#{vphone})
 	</insert>
@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 登录 -->
 	<select id="login" parameterType="VUser" resultType="VUser">
-		select * from VoteUser where
+		select * from "VoteUser" where
 		vphone=#{vphone} and vuPassword =#{vupassword}
 	</select>
 </mapper>

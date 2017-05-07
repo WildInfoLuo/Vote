@@ -18,10 +18,12 @@ public class TimeGetRequest extends BaseTaobaoRequest<TimeGetResponse> {
 	
 	
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.time.get";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		if(this.udfParams != null) {
@@ -30,10 +32,12 @@ public class TimeGetRequest extends BaseTaobaoRequest<TimeGetResponse> {
 		return txtParams;
 	}
 
+	@Override
 	public Class<TimeGetResponse> getResponseClass() {
 		return TimeGetResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 	}
 	

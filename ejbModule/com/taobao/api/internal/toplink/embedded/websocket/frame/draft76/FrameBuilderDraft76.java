@@ -87,7 +87,7 @@ public class FrameBuilderDraft76 {
 		}else{
 			throw new IllegalStateException("Not found Opcode type! (" + type + ")");			
 		}
-		return new FrameHeaderDraft76((byte)type, payloadLength);
+		return new FrameHeaderDraft76(type, payloadLength);
 	}
 	
 	/**

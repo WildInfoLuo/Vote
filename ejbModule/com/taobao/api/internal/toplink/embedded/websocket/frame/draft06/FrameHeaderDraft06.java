@@ -96,6 +96,7 @@ public class FrameHeaderDraft06 implements FrameHeader {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.FrameHeader#getFrameLength()
 	 */
+	@Override
 	public long getFrameLength(){
 		return headerLength + payloadLength;
 	}
@@ -112,6 +113,7 @@ public class FrameHeaderDraft06 implements FrameHeader {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.FrameHeader#getContentsLength()
 	 */
+	@Override
 	public long getContentsLength(){
 		return payloadLength;
 	}
@@ -156,6 +158,7 @@ public class FrameHeaderDraft06 implements FrameHeader {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.FrameHeader#toByteBuffer()
 	 */
+	@Override
 	public ByteBuffer toByteBuffer(){
 			ByteBuffer buf = ByteBuffer.allocate(2 + payloadLengthType.offset());
 			buf.put((byte)((fragmented ? 0 : 0x80) | opcode.intValue()));
@@ -164,11 +167,11 @@ public class FrameHeaderDraft06 implements FrameHeader {
 				buf.put((byte)payloadLength);
 				break;
 			case LEN_16:
-				buf.put((byte)payloadLengthType.byteValue());
+				buf.put(payloadLengthType.byteValue());
 				buf.putShort((short)payloadLength);
 				break;
 			case LEN_63:
-				buf.put((byte)payloadLengthType.byteValue());
+				buf.put(payloadLengthType.byteValue());
 				buf.putLong(payloadLength);
 				break;
 			}

@@ -64,6 +64,7 @@ public class BatchTaobaoClient extends DefaultTaobaoClient {
 	 * @param request 批量API请求类（线程不安全，不能把此请求重复使用，否则将会出现响应顺序错乱）
 	 * @return 批量API响应类，单个API响应顺序与请求一致
 	 */
+	@Override
 	public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request) throws ApiException {
 		return execute(request, null);
 	}
@@ -76,6 +77,7 @@ public class BatchTaobaoClient extends DefaultTaobaoClient {
 	 * @param session 用户授权码，将会用于所有批量API请求的授权码，但可以被单个API请求的授权码覆盖
 	 * @return 批量API响应类，单个API响应顺序与请求一致
 	 */
+	@Override
 	public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String session) throws ApiException {
 		if (request instanceof TaobaoBatchRequest) {
 			return _execute(request, session);

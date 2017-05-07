@@ -34,23 +34,28 @@ public class JSONValidatingWriter extends JSONWriter {
         return text;
     }
 
-    public String write(Object object) {
+    @Override
+	public String write(Object object) {
         return validate(super.write(object));
     }
 
-    public String write(long n) {
+    @Override
+	public String write(long n) {
         return validate(super.write(n));
     }
 
-    public String write(double d) {
+    @Override
+	public String write(double d) {
         return validate(super.write(d));
     }
 
-    public String write(char c) {
+    @Override
+	public String write(char c) {
         return validate(super.write(c));
     }
 
-    public String write(boolean b) {
+    @Override
+	public String write(boolean b) {
         return validate(super.write(b));
     }
 }

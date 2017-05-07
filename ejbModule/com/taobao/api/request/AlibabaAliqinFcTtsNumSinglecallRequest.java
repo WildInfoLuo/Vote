@@ -1,6 +1,5 @@
 package com.taobao.api.request;
 
-import com.taobao.api.internal.util.json.JSONValidatingReader;
 import com.taobao.api.internal.util.RequestCheckUtils;
 import java.util.Map;
 
@@ -88,10 +87,12 @@ public class AlibabaAliqinFcTtsNumSinglecallRequest extends BaseTaobaoRequest<Al
 		return this.ttsParam;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "alibaba.aliqin.fc.tts.num.singlecall";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("called_num", this.calledNum);
@@ -105,10 +106,12 @@ public class AlibabaAliqinFcTtsNumSinglecallRequest extends BaseTaobaoRequest<Al
 		return txtParams;
 	}
 
+	@Override
 	public Class<AlibabaAliqinFcTtsNumSinglecallResponse> getResponseClass() {
 		return AlibabaAliqinFcTtsNumSinglecallResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(calledNum, "calledNum");
 		RequestCheckUtils.checkNotEmpty(calledShowNum, "calledShowNum");

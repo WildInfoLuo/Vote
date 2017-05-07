@@ -81,6 +81,7 @@ abstract public class FrameDraft06 extends Frame {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.frame.Frame#toByteBuffer()
 	 */
+	@Override
 	public ByteBuffer toByteBuffer(){
 		ByteBuffer headerBuffer = header.toByteBuffer();
 		int bodyLength = 0;

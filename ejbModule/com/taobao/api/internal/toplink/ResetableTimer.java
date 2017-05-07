@@ -38,6 +38,7 @@ public class ResetableTimer {
 
 		this.running = true;
 		this.boss = new Thread(new Runnable() {
+			@Override
 			public void run() {
 				while (running) {
 					long split = System.currentTimeMillis() - lastTime;

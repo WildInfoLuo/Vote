@@ -22,6 +22,7 @@ import com.taobao.api.internal.util.json.JSONValidatingReader;
  */
 public class SimplifyJsonConverter implements Converter {
 
+	@Override
 	public <T extends AliyunResponse> T toResponse(String rsp, Class<T> clazz) throws ApiException {
 		JSONReader reader = new JSONValidatingReader(new ExceptionErrorListener());
 		Object rootObj = reader.read(rsp);
@@ -47,14 +48,17 @@ public class SimplifyJsonConverter implements Converter {
 	 */
 	public <T> T fromJson(final Map<?, ?> json, Class<T> clazz) throws ApiException {
 		return Converters.convert(clazz, new Reader() {
+			@Override
 			public boolean hasReturnField(Object name) {
 				return json.containsKey(name);
 			}
 
+			@Override
 			public Object getPrimitiveObject(Object name) {
 				return json.get(name);
 			}
 
+			@Override
 			public Object getObject(Object name, Class<?> type) throws ApiException {
 				Object tmp = json.get(name);
 				if (tmp instanceof Map<?, ?>) {
@@ -65,6 +69,7 @@ public class SimplifyJsonConverter implements Converter {
 				}
 			}
 
+			@Override
 			public List<?> getListObjects(Object listName, Object itemName, Class<?> subType) throws ApiException {
 				List<Object> listObjs = null;
 

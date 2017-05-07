@@ -1,9 +1,9 @@
-package com.vote.mapper;
+package com.vote.service;
 
 import com.vote.entity.VoteItem;
 import com.vote.entity.VoteSubject;
 
-public interface VoteMapper {
+public interface VoteService {
 	/**
 	 * 投票主题
 	 * 

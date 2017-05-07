@@ -54,10 +54,12 @@ public class DefaultTaobaoClient implements TaobaoClient {
 		this.signMethod = signMethod;
 	}
 
+	@Override
 	public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request) throws ApiException {
 		return execute(request, null);
 	}
 
+	@Override
 	public <T extends TaobaoResponse> T execute(TaobaoRequest<T> request, String session) throws ApiException {
 		return _execute(request, session);
 	}

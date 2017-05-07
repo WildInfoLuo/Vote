@@ -15,7 +15,7 @@
 		</c:if>
 		<a href="" onclick="quitUser()">注销</a> 
 		<span class="return"><a
-			href="page/index.jsp">返回列表</a></span> <span class="addnew"><a
+			href="page/manage.jsp">返回列表</a></span> <span class="addnew"><a
 			href="page/add.jsp">添加新投票</a></span> <span class="modify"><a
 			href="page/manage.jsp">维护</a></span>
 

@@ -95,6 +95,7 @@ abstract public class FrameRfc6455 extends Frame implements Maskable {
 	 * 
 	 * @see jp.a840.websocket.frame.Frame#toByteBuffer()
 	 */
+	@Override
 	public ByteBuffer toByteBuffer() {
 		ByteBuffer headerBuffer = header.toByteBuffer();
 		int bodyLength = 0;
@@ -129,10 +130,12 @@ abstract public class FrameRfc6455 extends Frame implements Maskable {
 		return ((FrameHeaderRfc6455) header).getOpcode().equals(Opcode.CONTINUATION);
 	}
 
+	@Override
 	public void unmask() {
 		((FrameHeaderRfc6455) header).setMask(this.mask = false);
 	}
 
+	@Override
 	public void mask() {
 		((FrameHeaderRfc6455) header).setMask(this.mask = true);
 	}

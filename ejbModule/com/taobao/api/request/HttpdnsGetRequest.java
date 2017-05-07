@@ -18,10 +18,12 @@ public class HttpdnsGetRequest extends BaseTaobaoRequest<HttpdnsGetResponse> {
 	
 	
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.httpdns.get";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		if(this.udfParams != null) {
@@ -30,10 +32,12 @@ public class HttpdnsGetRequest extends BaseTaobaoRequest<HttpdnsGetResponse> {
 		return txtParams;
 	}
 
+	@Override
 	public Class<HttpdnsGetResponse> getResponseClass() {
 		return HttpdnsGetResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 	}
 	

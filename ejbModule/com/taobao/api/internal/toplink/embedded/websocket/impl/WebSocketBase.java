@@ -281,6 +281,7 @@ abstract public class WebSocketBase implements WebSocket {
 		// Add upstream qeueue handler first.
 		// it push the upstream buffer to a sendqueue and then wakeup a selector
 		this.pipeline.addStreamHandler(new StreamHandlerAdapter() {
+			@Override
 			public void nextUpstreamHandler(WebSocket ws, ByteBuffer buffer,
 					Frame frame, StreamHandlerChain chain) throws WebSocketException {
 				if(!upstreamQueue.offer(buffer)){
@@ -288,6 +289,7 @@ abstract public class WebSocketBase implements WebSocket {
 				}
 				selector.wakeup();
 			}
+			@Override
 			public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer,
 					StreamHandlerChain chain) throws WebSocketException {
 				if(!upstreamQueue.offer(buffer)){
@@ -356,6 +358,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#getLocation()
 	 */
+	@Override
 	public URI getLocation() {
 		return location;
 	}
@@ -363,6 +366,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#send(jp.a840.websocket.frame.Frame)
 	 */
+	@Override
 	public void send(Frame frame) throws WebSocketException {
 		if(!isConnected()){
 			throw new WebSocketException(E3010);
@@ -380,14 +384,17 @@ abstract public class WebSocketBase implements WebSocket {
 		send(createFrame(obj));
 	}
 
-    public void send(ByteBuffer buffer) throws WebSocketException {
+    @Override
+	public void send(ByteBuffer buffer) throws WebSocketException {
    		send(createFrame(buffer));
    	}
 
-   	public void send(byte[] bytes) throws WebSocketException {
+   	@Override
+	public void send(byte[] bytes) throws WebSocketException {
    		send(createFrame(bytes));
    	}
 
+	@Override
 	public void send(String str) throws WebSocketException {
 		send(createFrame(str));
 	}
@@ -518,6 +525,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#connect()
 	 */
+	@Override
 	public void connect() throws WebSocketException {
 		try {
 			// check connection status
@@ -573,6 +581,7 @@ abstract public class WebSocketBase implements WebSocket {
 			transitionTo(State.HANDSHAKE);
 
 			Runnable worker = new Runnable() {
+				@Override
 				public void run() {
 					try {
 						while (!quit) {
@@ -650,7 +659,8 @@ abstract public class WebSocketBase implements WebSocket {
                 this.executorThreadName = "WebSocket-Executor-" + executorThreadNumber.incrementAndGet();
 				executorService = Executors
 						.newSingleThreadExecutor(new ThreadFactory() {
-                            public Thread newThread(Runnable r) {
+                            @Override
+							public Thread newThread(Runnable r) {
                                 Thread t = new Thread(r, executorThreadName);
                                 t.setDaemon(true);
                                 return t;
@@ -692,6 +702,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#isConnected()
 	 */
+	@Override
 	public boolean isConnected() {
 		return state.isConnected();
 	}
@@ -699,6 +710,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#close()
 	 */
+	@Override
 	public void close() {
 		try {
 			if(state == State.WAIT){
@@ -744,7 +756,8 @@ abstract public class WebSocketBase implements WebSocket {
 		}
 	}
 
-    public void awaitClose() throws InterruptedException {
+    @Override
+	public void awaitClose() throws InterruptedException {
         closeLatch.await();
    	}
 
@@ -758,6 +771,7 @@ abstract public class WebSocketBase implements WebSocket {
 		transitionTo(State.CLOSED);
 	}
 
+	@Override
 	public Frame createFrame(Object obj) throws WebSocketException {
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -771,7 +785,8 @@ abstract public class WebSocketBase implements WebSocket {
 		}
 	}
 	
-    public Frame createFrame(ByteBuffer buffer) throws WebSocketException {
+    @Override
+	public Frame createFrame(ByteBuffer buffer) throws WebSocketException {
         byte[] bytes = new byte[buffer.limit()];
         buffer.get(bytes);
         return createFrame(bytes);
@@ -780,11 +795,13 @@ abstract public class WebSocketBase implements WebSocket {
    	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#createFrame(java.lang.Object)
 	 */
+	@Override
 	abstract public Frame createFrame(byte[] bytes) throws WebSocketException;
 
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#createFrame(java.lang.String)
 	 */
+	@Override
 	abstract public Frame createFrame(String str) throws WebSocketException;
 
 	/**
@@ -882,6 +899,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#isBlockingMode()
 	 */
+	@Override
 	public boolean isBlockingMode() {
 		return blockingMode;
 	}
@@ -889,6 +907,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#setBlockingMode(boolean)
 	 */
+	@Override
 	public void setBlockingMode(boolean blockingMode) {
 		this.blockingMode = blockingMode;
 	}
@@ -923,6 +942,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#getEndpoint()
 	 */
+	@Override
 	public InetSocketAddress getEndpoint() {
 		return endpointAddress;
 	}
@@ -975,6 +995,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#getConnectionTimeout()
 	 */
+	@Override
 	public int getConnectionTimeout() {
 		return connectionTimeout;
 	}
@@ -982,6 +1003,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#setConnectionTimeout(int)
 	 */
+	@Override
 	public void setConnectionTimeout(int connectionTimeout) {
 		this.connectionTimeout = connectionTimeout * 1000;
 	}
@@ -1016,6 +1038,7 @@ abstract public class WebSocketBase implements WebSocket {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.WebSocket#getBufferSize()
 	 */
+	@Override
 	public int getBufferSize() {
 		return bufferSize;
 	}

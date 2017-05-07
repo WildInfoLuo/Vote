@@ -18,10 +18,12 @@ public class TopIpoutGetRequest extends BaseTaobaoRequest<TopIpoutGetResponse> {
 	
 	
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.top.ipout.get";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		if(this.udfParams != null) {
@@ -30,10 +32,12 @@ public class TopIpoutGetRequest extends BaseTaobaoRequest<TopIpoutGetResponse> {
 		return txtParams;
 	}
 
+	@Override
 	public Class<TopIpoutGetResponse> getResponseClass() {
 		return TopIpoutGetResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 	}
 	

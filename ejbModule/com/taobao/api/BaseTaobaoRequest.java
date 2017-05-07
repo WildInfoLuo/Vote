@@ -30,6 +30,7 @@ public abstract class BaseTaobaoRequest<T extends TaobaoResponse> implements Tao
 		this.udfParams.put(key, value);
 	}
 
+	@Override
 	public Map<String, String> getHeaderMap() {
 		if (this.headerMap == null) {
 			this.headerMap = new TaobaoHashMap();
@@ -48,6 +49,7 @@ public abstract class BaseTaobaoRequest<T extends TaobaoResponse> implements Tao
 		getHeaderMap().put(key, value);
 	}
 
+	@Override
 	public Long getTimestamp() {
 		return this.timestamp;
 	}
@@ -56,6 +58,7 @@ public abstract class BaseTaobaoRequest<T extends TaobaoResponse> implements Tao
 		this.timestamp = timestamp;
 	}
 
+	@Override
 	public String getTargetAppKey() {
 		return this.targetAppKey;
 	}
@@ -72,18 +75,22 @@ public abstract class BaseTaobaoRequest<T extends TaobaoResponse> implements Tao
 		this.topMixParams = topMixParams;
 	}
 
+	@Override
 	public String getBatchApiSession() {
 		return this.session;
 	}
 
+	@Override
 	public void setBatchApiSession(String session) {
 		this.session = session;
 	}
 
+	@Override
 	public int getBatchApiOrder() {
 		return this.order;
 	}
 
+	@Override
 	public void setBatchApiOrder(int order) {
 		this.order = order;
 	}

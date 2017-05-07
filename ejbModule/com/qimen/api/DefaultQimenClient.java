@@ -39,10 +39,12 @@ public class DefaultQimenClient implements QimenClient {
 		this.serverUrl = serverUrl;
 	}
 
+	@Override
 	public <T extends QimenResponse> T execute(QimenRequest<T> request) throws ApiException {
 		return execute(request, null);
 	}
 
+	@Override
 	public <T extends QimenResponse> T execute(QimenRequest<T> request, String session) throws ApiException {
 		return _execute(request, session);
 	}

@@ -63,10 +63,12 @@ public class KfcKeywordSearchRequest extends BaseTaobaoRequest<KfcKeywordSearchR
 		return this.nick;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.kfc.keyword.search";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("apply", this.apply);
@@ -78,10 +80,12 @@ public class KfcKeywordSearchRequest extends BaseTaobaoRequest<KfcKeywordSearchR
 		return txtParams;
 	}
 
+	@Override
 	public Class<KfcKeywordSearchResponse> getResponseClass() {
 		return KfcKeywordSearchResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(content, "content");
 	}

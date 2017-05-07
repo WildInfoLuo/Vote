@@ -62,6 +62,7 @@ public class WebSocketStreamHandler implements StreamHandler {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.handler.StreamHandler#nextUpstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.frame.Frame, jp.a840.websocket.handler.StreamHandlerChain)
 	 */
+	@Override
 	public void nextUpstreamHandler(WebSocket ws, ByteBuffer buffer, Frame frame,
 			StreamHandlerChain chain) throws WebSocketException {
 		// TODO split buffer for WebSocket buffer size
@@ -71,6 +72,7 @@ public class WebSocketStreamHandler implements StreamHandler {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.handler.StreamHandler#nextDownstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.frame.Frame, jp.a840.websocket.handler.StreamHandlerChain)
 	 */
+	@Override
 	public void nextDownstreamHandler(WebSocket ws, ByteBuffer buffer, Frame nullFrame,
 			StreamHandlerChain chain) throws WebSocketException {
 		while (buffer.hasRemaining()) {
@@ -86,6 +88,7 @@ public class WebSocketStreamHandler implements StreamHandler {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.handler.StreamHandler#nextHandshakeUpstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.handler.StreamHandlerChain)
 	 */
+	@Override
 	public void nextHandshakeUpstreamHandler(WebSocket ws, ByteBuffer buffer,
 			StreamHandlerChain chain) throws WebSocketException {
 		ByteBuffer request = handshake.createHandshakeRequest();
@@ -97,6 +100,7 @@ public class WebSocketStreamHandler implements StreamHandler {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.handler.StreamHandler#nextHandshakeDownstreamHandler(jp.a840.websocket.WebSocket, java.nio.ByteBuffer, jp.a840.websocket.handler.StreamHandlerChain)
 	 */
+	@Override
 	public void nextHandshakeDownstreamHandler(WebSocket ws, ByteBuffer buffer,
 			StreamHandlerChain chain) throws WebSocketException {
 		if(handshake.handshakeResponse(buffer)){

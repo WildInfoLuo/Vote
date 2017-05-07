@@ -32,10 +32,12 @@ public class TopatsTaskDeleteRequest extends BaseTaobaoRequest<TopatsTaskDeleteR
 		return this.taskId;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.topats.task.delete";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("task_id", this.taskId);
@@ -45,10 +47,12 @@ public class TopatsTaskDeleteRequest extends BaseTaobaoRequest<TopatsTaskDeleteR
 		return txtParams;
 	}
 
+	@Override
 	public Class<TopatsTaskDeleteResponse> getResponseClass() {
 		return TopatsTaskDeleteResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(taskId, "taskId");
 	}

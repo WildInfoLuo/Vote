@@ -19,11 +19,13 @@ public class ObjectXmlParser<T extends TaobaoResponse> implements TaobaoParser<T
 		this.clazz = clazz;
 	}
 
+	@Override
 	public T parse(String rsp) throws ApiException {
 		Converter converter = new XmlConverter();
 		return converter.toResponse(rsp, clazz);
 	}
 
+	@Override
 	public Class<T> getResponseClass() {
 		return clazz;
 	}

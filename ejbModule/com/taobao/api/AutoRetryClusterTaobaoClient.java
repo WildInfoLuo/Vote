@@ -31,6 +31,7 @@ public class AutoRetryClusterTaobaoClient extends AutoRetryTaobaoClient {
 		ClusterManager.initRefreshThread(this);
 	}
 
+	@Override
 	public String getServerUrl(String serverUrl, String apiName, String session,TaobaoHashMap appParams) {
 		DnsConfig dnsConfig = ClusterManager.GetDnsConfigFromCache();
 		if (dnsConfig == null) {
@@ -40,6 +41,7 @@ public class AutoRetryClusterTaobaoClient extends AutoRetryTaobaoClient {
 		}
 	}
 
+	@Override
 	protected String getSdkVersion() {
 		return Constants.SDK_VERSION_CLUSTER;
 	}

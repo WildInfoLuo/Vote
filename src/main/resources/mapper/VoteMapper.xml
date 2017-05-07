@@ -4,9 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vote.mapper.VoteMapper">
 	<insert id="insertVote" parameterType="VoteSubject">
-		insert into VoteSuject
+		insert into "VoteSubject"
 		(Vsid,Vstitle,Vs_Type)
 		values(#{Vsid},#{Vstitle},#{Vs_Type})
+	</insert>
+	
+	<insert id="insertVoteItem" parameterType="VoteSubject">
+		insert into "Voteoption"
+		(VOIDS,VOOPTION,VSID,VOORDER)
+		values(#{VOIDS},#{VOOPTION},#{VSID},#{VOORDER})
 	</insert>
 	<!-- <select id="selectPhone" parameterType="String" resultType="String">
 		select vphone from VoteUser where vphone=#{vphone}

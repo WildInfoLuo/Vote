@@ -32,10 +32,12 @@ public class AreasGetRequest extends BaseTaobaoRequest<AreasGetResponse> {
 		return this.fields;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "taobao.areas.get";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("fields", this.fields);
@@ -45,10 +47,12 @@ public class AreasGetRequest extends BaseTaobaoRequest<AreasGetResponse> {
 		return txtParams;
 	}
 
+	@Override
 	public Class<AreasGetResponse> getResponseClass() {
 		return AreasGetResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 		RequestCheckUtils.checkNotEmpty(fields, "fields");
 	}

@@ -48,6 +48,7 @@ public class BasicAuthenticator extends AbstractAuthenticator {
 	/* (non-Javadoc)
 	 * @see jp.a840.websocket.proxy.ProxyCredentials#getCredentials()
 	 */
+	@Override
 	public String getCredentials(List<Challenge> challengeList) throws WebSocketException {
 		for(Challenge challenge : challengeList){
 			if (AuthScheme.Basic.equals(challenge.getScheme())) {

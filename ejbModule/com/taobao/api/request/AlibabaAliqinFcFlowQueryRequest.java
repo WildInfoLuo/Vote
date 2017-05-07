@@ -31,10 +31,12 @@ public class AlibabaAliqinFcFlowQueryRequest extends BaseTaobaoRequest<AlibabaAl
 		return this.outId;
 	}
 
+	@Override
 	public String getApiMethodName() {
 		return "alibaba.aliqin.fc.flow.query";
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {		
 		TaobaoHashMap txtParams = new TaobaoHashMap();
 		txtParams.put("out_id", this.outId);
@@ -44,10 +46,12 @@ public class AlibabaAliqinFcFlowQueryRequest extends BaseTaobaoRequest<AlibabaAl
 		return txtParams;
 	}
 
+	@Override
 	public Class<AlibabaAliqinFcFlowQueryResponse> getResponseClass() {
 		return AlibabaAliqinFcFlowQueryResponse.class;
 	}
 
+	@Override
 	public void check() throws ApiRuleException {
 	}
 	
