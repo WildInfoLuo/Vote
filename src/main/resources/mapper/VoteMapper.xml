@@ -3,23 +3,28 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vote.mapper.VoteMapper">
+	<!-- 插入投票主题 -->
 	<insert id="insertVote" parameterType="VoteSubject">
 		insert into "VoteSubject"
 		(Vsid,Vstitle,Vs_Type)
 		values(#{Vsid},#{Vstitle},#{Vs_Type})
 	</insert>
-	
-	<insert id="insertVoteItem" parameterType="VoteSubject">
-		insert into "Voteoption"
+	<!-- 插入投票选项 -->
+	<insert id="insertVoteOption" parameterType="VoteOption">
+		insert into
+		"Voteoption"
 		(VOIDS,VOOPTION,VSID,VOORDER)
-		values(#{VOIDS},#{VOOPTION},#{VSID},#{VOORDER})
+		values(#{Voids},#{Vooption},#{Vsid},#{VOORDER})
 	</insert>
-	<!-- <select id="selectPhone" parameterType="String" resultType="String">
-		select vphone from VoteUser where vphone=#{vphone}
-	</select>
-	登录
-	<select id="login" parameterType="VUser" resultType="VUser">
-		select * from VoteUser where
-		vphone=#{vphone} and vuPassword =#{vupassword}
-	</select> -->
+	<!-- 插入投票关系与用户 -->
+	<insert id="insertVoteitem" parameterType="VoteItem">
+		insert into "Voteitem"
+		(VIID,VOIDS,VSID,VUID
+		)
+		values(#{Viid},#{Voids},#{Vsid},#{Vuid})
+	</insert>
+	<!-- <select id="selectPhone" parameterType="String" resultType="String"> 
+		select vphone from VoteUser where vphone=#{vphone} </select> 登录 <select id="login" 
+		parameterType="VUser" resultType="VUser"> select * from VoteUser where vphone=#{vphone} 
+		and vuPassword =#{vupassword} </select> -->
 </mapper>

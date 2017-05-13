@@ -17,6 +17,10 @@ public class VoteOption implements Serializable {
 	private String Vsid;// 投票id
 	private String VOORDER;// 第几个选项
 
+	
+	public VoteOption() {
+	}
+
 	public VoteOption(String voids, String vooption, String vsid, String vOORDER) {
 		super();
 		Voids = voids;
@@ -25,12 +29,12 @@ public class VoteOption implements Serializable {
 		VOORDER = vOORDER;
 	}
 
-	public String getVoid() {
+	public String getVoids() {
 		return Voids;
 	}
 
-	public void setVoid(String void1) {
-		Voids = void1;
+	public void setVoids(String voids) {
+		Voids = voids;
 	}
 
 	public String getVooption() {
@@ -56,5 +60,4 @@ public class VoteOption implements Serializable {
 	public void setVOORDER(String vOORDER) {
 		VOORDER = vOORDER;
 	}
-
 }

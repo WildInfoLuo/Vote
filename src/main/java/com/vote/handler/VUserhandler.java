@@ -51,6 +51,8 @@ public class VUserhandler {
 			VUser users = uservice.login(userLogin);
 			if (null != users) {
 				session.setAttribute(SessionAttribute.USERLOGIN, users);
+				session.setAttribute(SessionAttribute.USERLOGINID, users.getVuId());
+
 				//map.put("usersLogin", users.getVuusername());
 				return "index";
 			} else {

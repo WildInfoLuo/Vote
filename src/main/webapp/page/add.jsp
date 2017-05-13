@@ -14,32 +14,27 @@
 	<div id="voteManage" class="box">
 		<h2>添加新投票</h2>
 		<div class="content">
-			<form method="post" action="vote/insertVote">
+			<form method="post" action="">
 				<dl>
 					<dt>投票内容：</dt>
 					<dd>
 						<input type="hidden" name="entityId" value="" /> <input
-							type="text" class="input-text" name="titleContent" value="" />
+							type="text" class="input-text" name="titleContent" id="titleContent" value="" />
 					</dd>
 					<dt>投票类型：</dt>
 					<dd>
-						<input type="radio" name="subjectType" value="1" />单选 <input
-							type="radio" name="subjectType" value="2" />多选
+						<input type="radio" name="subjectType" value="1" id="subjectType"/>单选 <input
+							type="radio" name="subjectType" id="subjectType" value="2" />多选
 					</dd>
 					<dt>投票选项：</dt>
 					<dd id="voteoptions">
-						<p>
-							<input type="text" class="input-text" name="options" />
-						</p>
 						<p>
 							<input type="text" class="input-text" name="mytext[]"
 								id="field_1" value="" />
 						</p>
 					</dd>
-					<dd id="voteoptions"></dd> 
-					<dt></dt>
 					<dd class="button">
-						<input type="image" src="page/images/button_submit.gif" /> <a
+						<input type="image" src="page/images/button_submit.gif" id="addVoteCount"/> <a
 							href="javascript:;" id="AddMoreFileBox">增加选项</a> <a
 							href="page/index.jsp">取消操作</a>
 					</dd>

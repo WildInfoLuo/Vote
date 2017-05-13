@@ -1,6 +1,7 @@
 package com.vote.service;
 
 import com.vote.entity.VoteItem;
+import com.vote.entity.VoteOption;
 import com.vote.entity.VoteSubject;
 
 public interface VoteService {
@@ -18,6 +19,13 @@ public interface VoteService {
 	 * @param item
 	 * @return
 	 */
-	public int insertVoteItem(VoteItem item);
+	public int insertVoteOption(VoteOption option);
 
+	/**
+	 * 插入投票关系
+	 * 
+	 * @param item
+	 * @return
+	 */
+	public int insertVoteitem(VoteItem item);
 }
