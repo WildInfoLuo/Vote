@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{vuId},#{vuusername},#{vupassword},#{Vustatus},#{vuversion},#{vphone})
 	</insert>
 	<select id="selectPhone" parameterType="String" resultType="String">
-		select vphone from VoteUser where vphone=#{vphone}
+		select vphone from "VoteUser" where vphone=#{vphone}
 	</select>
 	<!-- 登录 -->
 	<select id="login" parameterType="VUser" resultType="VUser">
