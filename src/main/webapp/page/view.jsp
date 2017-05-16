@@ -15,13 +15,13 @@
 	<ul class="list">
 		<li>
 			<h4></h4>
-			<p class="info">共有 <s:property value="subject.options.size"/> 个选项，已有 <s:property value="votes"/> 个网友参与了投票。</p>
+			<p class="info">共有 ${voteOption } 个选项，已有 ${votesubject.vstitle} 个网友参与了投票。</p>
 				<ol>
 				  <s:iterator value="subject.options" status="status"> 
-					<li><s:property value="option.name"/>
+					<li>
 						<div class="rate">
-							<div class="ratebg"><div class="percent" style="width:<s:property value='statPercent[id]'/>%"></div></div>
-							<p><s:property value="stat[id]"/>票<span>(<s:property value="statPercent[id]"/>%)</span></p>
+							<div class="ratebg"><div class="percent" style="width:21"></div></div>
+							<p>21票<span>(21%)</span></p>
 						</div>
 					</li>
 				  </s:iterator>	

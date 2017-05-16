@@ -1,5 +1,7 @@
 package com.vote.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,26 @@ public class VoteServiceImpl implements VoteService {
 	@Override
 	public int insertVoteitem(VoteItem item) {
 		return voteapper.insertVoteitem(item);
+	}
+
+	@Override
+	public VoteSubject selectVote(VoteSubject subject) {
+		return voteapper.selectVote(subject);
+	}
+
+	@Override
+	public List<VoteSubject> selectAllVote() {
+		return voteapper.selectAllVote();
+	}
+
+	@Override
+	public VoteItem selectVoteitem(VoteItem voteItem) {
+		return voteapper.selectVoteitem(voteItem);
+	}
+
+	@Override
+	public VoteOption selectVoteOption(VoteOption voteOption) {
+		return voteapper.selectVoteOption(voteOption);
 	}
 
 }

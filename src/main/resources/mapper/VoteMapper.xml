@@ -23,6 +23,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 		values(#{Viid},#{Voids},#{Vsid},#{Vuid})
 	</insert>
+
+	<!-- 查询投票主题 -->
+	<select id="selectVote" parameterType="String" resultType="VoteSubject">
+	select * from "VoteSubject" where Vsid=#{Vsid}
+	</select>
+	
+	<!-- 查询多少个选项-->
+	<select id="selectVoteOption" parameterType="String" resultType="VoteOption">
+		SELECT "COUNT"('vsid') FROM "Voteoption" WHERE Vsid=#{Vsid}
+	</select>
+	
+	<!-- 查询根据投票Id用户与投票表-->
+	<select id="selectVoteitem" parameterType="String" resultType="VoteItem">
+		SELECT *  FROM "Voteitem" WHERE VSID=#{VSID}
+	</select>
+	
+	<!-- 查询所有的投票主题 -->
+	<select id="selectAllVote" parameterType="String" resultType="VoteSubject">
+		select * from "VoteSubject"
+	</select>
+	
 	<!-- <select id="selectPhone" parameterType="String" resultType="String"> 
 		select vphone from VoteUser where vphone=#{vphone} </select> 登录 <select id="login" 
 		parameterType="VUser" resultType="VUser"> select * from VoteUser where vphone=#{vphone} 

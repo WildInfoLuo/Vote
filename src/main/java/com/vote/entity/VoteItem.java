@@ -15,6 +15,7 @@ public class VoteItem implements Serializable {
 	private String Voids;// 投票选项id
 	private String Vsid;// 投票主题编号id
 	private String Vuid;// 用户id
+	private String VCONTENT;//
 
 	public VoteItem(String viid, String voids, String vsid, String vuid) {
 		super();
@@ -58,6 +59,14 @@ public class VoteItem implements Serializable {
 
 	public void setVuid(String vuid) {
 		Vuid = vuid;
+	}
+
+	public String getVCONTENT() {
+		return VCONTENT;
+	}
+
+	public void setVCONTENT(String vCONTENT) {
+		VCONTENT = vCONTENT;
 	}
 
 }

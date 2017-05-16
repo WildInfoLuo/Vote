@@ -2,6 +2,7 @@ package com.vote.handler;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,11 +36,11 @@ public class Votehandler {
 	 * 
 	 * @param titleContent
 	 * @param map
-	 * @return 
+	 * @return
 	 * @return
 	 */
 	@RequestMapping(value = "/insertVote", method = RequestMethod.POST)
-	public String insertVote(HttpServletRequest request, PrintWriter out, HttpSession session,ModelMap map) {
+	public String insertVote(HttpServletRequest request, PrintWriter out, HttpSession session, ModelMap map) {
 		VoteSubject subject = new VoteSubject();
 		VoteOption option = new VoteOption();
 		VoteItem item = new VoteItem();
@@ -54,13 +55,13 @@ public class Votehandler {
 			subject.setVstitle(titleContents);
 			subject.setVs_Type(subjectType);
 			String voteSubOne[] = vote.split(":");
-			for (int i = 1; i < voteSubOne.length; i++) {
-				if (voteSubOne.length > 0) { 
+			for (int i = 0; i < voteSubOne.length; i++) {
+				if (voteSubOne.length > 0) {
 					String ones = voteSubOne[i];
 					String voteSubTwo[] = ones.split("=");
 					option.setVoids(UUIDUtil.createUUID());
 					option.setVooption(voteSubTwo[0]);
-					option.setVOORDER(i + "");
+					option.setVOORDER(i + 1 + "");
 					option.setVsid(subject.getVsid());
 					votesvice.insertVoteOption(option);
 				} else {
@@ -85,6 +86,47 @@ public class Votehandler {
 			map.put("desc", "数据为空");
 			out.close();
 			return "add";
+		}
+	}
+
+	/**
+	 * 查询所有投票
+	 * 
+	 * @param request
+	 * @param out
+	 * @param session
+	 * @param map
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/selectAllVote", method = RequestMethod.POST)
+	public void selectAllVote(HttpServletRequest request, PrintWriter out, HttpSession session, ModelMap map) {
+		List<VoteSubject> subject = votesvice.selectAllVote();
+		session.setAttribute(SessionAttribute.SUBJECT, subject);
+		map.put("subject", subject);
+	}
+
+	/**
+	 * 根据id查询投票详情
+	 * 
+	 * @param request
+	 * @param out
+	 * @param session
+	 * @param map
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/selectVote", method = RequestMethod.POST)
+	public void selectVote(HttpServletRequest request, PrintWriter out, HttpSession session, ModelMap map) {
+		VoteSubject suVoteSubject=new VoteSubject();
+		VoteOption option=new VoteOption();
+		String voteSubuject=request.getParameter("voteId");
+		if(StringUtils.isNotBlank(voteSubuject)){
+			suVoteSubject.setVsid(voteSubuject);
+			option.setVsid(voteSubuject);
+			VoteOption voteOption=votesvice.selectVoteOption(option);
+			VoteSubject subject = votesvice.selectVote(suVoteSubject);
+			session.setAttribute(SessionAttribute.VOTEOPTION, voteOption);
+			session.setAttribute(SessionAttribute.VoteSUBJECT, subject);
+			map.put("votesubject", subject);
 		}
 	}
 }
