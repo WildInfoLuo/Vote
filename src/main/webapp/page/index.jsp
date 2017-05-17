@@ -16,7 +16,7 @@
 	<div id="vote" class="wrap">
 		<h2>投票列表</h2>
 		<ul class="list">
-			<c:forEach items="${subject }" var="item">
+			<%-- <c:forEach items="${subjects }" var="item">
 				<li>
 					<h4>
 						<a href="javascript:void(0)" onclick="viewVote('${item.vsid}')" >${item.vstitle }</a>
@@ -26,10 +26,10 @@
 					</div>
 					<p class="info">
 						<a href="page/view.jsp">${item.vstitle }</a>
-						共有${item.vs_Type } 个选项，已有 个网友参与了投票。
+						已有 ${item.vstitle } 个网友参与了投票。
 					</p>
 				</li>
-			</c:forEach>
+			</c:forEach> --%>
 		</ul>
 	</div>
 	<div id="footer" class="wrap">Wild &copy; 版权所有</div>

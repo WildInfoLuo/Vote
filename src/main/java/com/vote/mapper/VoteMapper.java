@@ -57,5 +57,5 @@ public interface VoteMapper {
 	 * @param voteOption
 	 * @return
 	 */
-	public VoteOption selectVoteOption(VoteOption voteOption);
+	public int selectVoteOption(VoteOption voteOption);
 }

@@ -2,6 +2,7 @@ package com.vote.handler;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.vote.entity.VUser;
+import com.vote.entity.VoteSubject;
 import com.vote.enums.UserStatusEnum;
 import com.vote.enums.UserVersioniEnum;
 import com.vote.service.VUservice;
+import com.vote.service.VoteService;
 import com.vote.utils.CouldMessage;
 import com.vote.utils.PublicKeyMap;
 import com.vote.utils.RSAUtils;
@@ -35,6 +38,8 @@ public class VUserhandler {
 	@Autowired
 	private VUservice uservice;
 
+	@Autowired
+	private VoteService votesvice;
 	/**
 	 * 用户登录
 	 * 
@@ -44,6 +49,7 @@ public class VUserhandler {
 	public String login(@RequestParam("vuId") String vuId, @RequestParam("vupassword") String vupassword,
 			HttpServletRequest request, PrintWriter out, HttpSession session, ModelMap map) {
 		VUser userLogin = new VUser();
+		//List<VoteSubject> subject = votesvice.selectAllVote();
 		// 如果有错误的话，那么将返回注册页面
 		if (StringUtils.isNotBlank(vuId) && StringUtils.isNotBlank(vupassword)) {
 			userLogin.setVphone(vuId);
@@ -54,6 +60,7 @@ public class VUserhandler {
 				session.setAttribute(SessionAttribute.USERLOGINID, users.getVuId());
 
 				//map.put("usersLogin", users.getVuusername());
+				//map.put("subject", subject);
 				return "index";
 			} else {
 				map.put("regErrorMsg", "用户名或密码错误");

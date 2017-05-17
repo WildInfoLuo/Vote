@@ -48,7 +48,7 @@ public class VoteServiceImpl implements VoteService {
 	}
 
 	@Override
-	public VoteOption selectVoteOption(VoteOption voteOption) {
+	public int selectVoteOption(VoteOption voteOption) {
 		return voteapper.selectVoteOption(voteOption);
 	}
 

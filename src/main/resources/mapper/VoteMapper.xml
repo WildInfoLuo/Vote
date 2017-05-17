@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 查询多少个选项-->
-	<select id="selectVoteOption" parameterType="String" resultType="VoteOption">
+	<select id="selectVoteOption" parameterType="String" resultType="int">
 		SELECT "COUNT"('vsid') FROM "Voteoption" WHERE Vsid=#{Vsid}
 	</select>
 	
