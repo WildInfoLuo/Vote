@@ -33,20 +33,23 @@ public interface VoteMapper {
 
 	/**
 	 * 查询投票主题
+	 * 
 	 * @param subject
 	 * @return
 	 */
 	public VoteSubject selectVote(VoteSubject subject);
-	
+
 	/**
 	 * 查询所有的投票主题
+	 * 
 	 * @param subject
 	 * @return
 	 */
 	public List<VoteSubject> selectAllVote();
-	
+
 	/**
-	 *  查询根据投票Id用户与投票表
+	 * 查询根据投票Id用户与投票表
+	 * 
 	 * @param voteItem
 	 * @return
 	 */
@@ -54,8 +57,17 @@ public interface VoteMapper {
 
 	/**
 	 * 查询有多少选项
+	 * 
 	 * @param voteOption
 	 * @return
 	 */
 	public int selectVoteOption(VoteOption voteOption);
+
+	/**
+	 * 查询所有的投票主题Id
+	 * 
+	 * @param subject
+	 * @return
+	 */
+	public List<VoteSubject> selectAllVoteId();
 }

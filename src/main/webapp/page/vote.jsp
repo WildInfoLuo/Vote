@@ -14,7 +14,7 @@
 	<h2>参与投票</h2>
 	<ul class="list">
 		<li>
-			<h4><s:property value="subject.title"/></h4>
+			<h4>dfsadfas</h4>
 			<p class="info">共有  个选项，已有     个网友参与了投票。</p>
 			<form method="post" action="Vote!save.action">
 			    <input type="hidden" name="entityId" value="<s:property value='subject.id'/>"/> 

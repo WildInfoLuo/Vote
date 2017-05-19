@@ -52,4 +52,9 @@ public class VoteServiceImpl implements VoteService {
 		return voteapper.selectVoteOption(voteOption);
 	}
 
+	@Override
+	public List<VoteSubject> selectAllVoteId() {
+		return voteapper.selectAllVoteId();
+	}
+
 }

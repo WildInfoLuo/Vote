@@ -9,17 +9,16 @@
 <title>投票列表</title>
 <link type="text/css" rel="stylesheet" href="page/css/style.css" />
 <script type="text/javascript" src="page/js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="page/js/index.js"></script>
+<!-- <script type="text/javascript" src="page/js/index.js"></script> -->
 </head>
 <body>
 	<jsp:include page="top.jsp" />
 	<div id="vote" class="wrap">
 		<h2>投票列表</h2>
 		<ul class="list">
-			<%-- <c:forEach items="${subjects }" var="item">
 				<li>
 					<h4>
-						<a href="javascript:void(0)" onclick="viewVote('${item.vsid}')" >${item.vstitle }</a>
+						<a href="javascript:void(0)" onclick="viewVote('${item.vsid}')" >dfasfdasd</a>
 					</h4>
 					<div class="join">
 						<a href="page/vote.jsp">我要参与</a>
@@ -29,7 +28,6 @@
 						已有 ${item.vstitle } 个网友参与了投票。
 					</p>
 				</li>
-			</c:forEach> --%>
 		</ul>
 	</div>
 	<div id="footer" class="wrap">Wild &copy; 版权所有</div>

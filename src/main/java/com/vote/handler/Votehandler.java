@@ -97,39 +97,66 @@ public class Votehandler {
 	 * @param session
 	 * @param map
 	 */
-	@ResponseBody 
+	@ResponseBody
 	@RequestMapping(value = "/selectVote", method = RequestMethod.POST)
-	public void selectVote(PrintWriter out,HttpServletRequest request, HttpSession session) {
+	public void selectVote(PrintWriter out, HttpServletRequest request, HttpSession session) {
 		VoteSubject suVoteSubject = new VoteSubject();
 		VoteOption option = new VoteOption();
+		VoteItem voteItem = new VoteItem();
 		Gson gson = new Gson();
 		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map2 = new HashMap<String, Object>();
 		String voteSubuject = request.getParameter("voteId");
 		if (StringUtils.isNotBlank(voteSubuject)) {
 			suVoteSubject.setVsid(voteSubuject);
 			option.setVsid(voteSubuject);
+			voteItem.setVsid(voteSubuject);
 			List<VoteSubject> voteSubject = votesvice.selectAllVote();
 			int voteOption = votesvice.selectVoteOption(option);
 			VoteSubject subject = votesvice.selectVote(suVoteSubject);
-			session.setAttribute(SessionAttribute.VOTEOPTION, voteOption);
-			session.setAttribute(SessionAttribute.SUBJECT, voteSubject);
-			map.put("voteOption", voteOption);
-			map.put("subject", subject);
-			out.println(gson.toJson(map));
+			VoteItem itemList = votesvice.selectVoteitem(voteItem);
+			map2.put("voteOption", voteOption);// 查询选项
+			map2.put("subject", subject);// 查询本条主题
+			map2.put("voteSubject", voteSubject);// 查询所有的
+			map2.put("itemList", itemList);// 查询多少人投票
+			out.println(gson.toJson(map2));
 			out.flush();
 			out.close();
 		}
 	}
-	
+
 	/**
 	 * 查询所有投票
+	 * 
 	 * @param out
 	 * @param request
 	 * @param session
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/selectAllVote", method = RequestMethod.POST)
-	public void selectAllVote(PrintWriter out,HttpServletRequest request, HttpSession session) {
+	public void selectAllVote(PrintWriter out, HttpServletRequest request, HttpSession session) {
+		Gson gson = new Gson();
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		List<VoteSubject> subject = votesvice.selectAllVote();
+		List<VoteSubject> voteIdes=votesvice.selectAllVoteId();
+		//map2.put("voteIdes", voteIdes);
+		map2.put("subject", subject);
+		map.put("data", map2);
+		out.println(gson.toJson(map2));
+		out.flush();
+		out.close();
+	}
+
+	/**
+	 * 
+	 * @param out
+	 * @param request
+	 * @param session
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/selectVoteitem", method = RequestMethod.POST)
+	public void selectVoteitem(PrintWriter out, HttpServletRequest request, HttpSession session) {
 		Gson gson = new Gson();
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<VoteSubject> subject = votesvice.selectAllVote();

@@ -57,4 +57,11 @@ public interface VoteService {
 	 * @return
 	 */
 	public int selectVoteOption(VoteOption voteOption);
+	
+	/**
+	 * 查询所有的投票主题Id
+	 * @param subject
+	 * @return
+	 */
+	public List<VoteSubject> selectAllVoteId();
 }

@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 查询根据投票Id用户与投票表-->
 	<select id="selectVoteitem" parameterType="String" resultType="VoteItem">
-		SELECT *  FROM "Voteitem" WHERE VSID=#{VSID}
+		SELECT *  FROM "Voteitem" WHERE VSID=#{Vsid}
 	</select>
 	
 	<!-- 查询所有的投票主题 -->
@@ -44,6 +44,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from "VoteSubject"
 	</select>
 	
+	<!-- 查询所有的投票主题的Id -->
+	<select id="selectAllVoteId" parameterType="String" resultType="VoteSubject">
+		select Vsid from "VoteSubject"
+	</select>
 	<!-- <select id="selectPhone" parameterType="String" resultType="String"> 
 		select vphone from VoteUser where vphone=#{vphone} </select> 登录 <select id="login" 
 		parameterType="VUser" resultType="VUser"> select * from VoteUser where vphone=#{vphone} 
