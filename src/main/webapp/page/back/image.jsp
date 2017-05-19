@@ -75,7 +75,7 @@
 	}
 	// 将四位数字的验证码保存到Session中。
 	String yzm=randomCode.toString();
-	//System.out.println(yzm);
+	System.out.println(yzm+"=vvvvvvvvvv");
 	session.removeAttribute("rand");
 	session.setAttribute("rand", yzm);
 

@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<base href="/VCloud/">
-<title>VCloud后台管理系统</title>
+<base href="/Vote/">
+<title>Vote后台管理系统</title>
 <link rel="stylesheet" type="text/css" href="page/back/css/style2.0.css">
 <script type="text/javascript" src="page/back/js/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="page/back/js/com.js"></script>
@@ -87,13 +87,13 @@
 </div> 
 <div id="contPar" class="contPar">
 	<div id="page1"  style="z-index:1;">
-		<div class="title0">VCloud后台管理系统</div>
-		<div class="title1">微云，享受站在云端的日子</div>
+		<div class="title0">Vote后台管理系统</div>
+		<div class="title1">基于WEB的校园投票系统</div>
 		<div class="imgGroug">
 			<ul>
-				<img alt="" class="img0 png" src="page/back/img/page1_0.png">
-				<img alt="" class="img1 png" src="page/back/img/page1_1.png">
-				<img alt="" class="img2 png" src="page/back/img/page1_2.png">
+				<!-- <img  style="padding-left: 10px;" alt="" class="img0 png" src="page/back/img/page1_0.png">  
+				<img style="padding-left: 10px;" alt="" class="img1 png" src="page/back/img/page1_1.png">   -->
+				<img  alt="" class="img2 png" src="page/back/img/page1_2.png" style="padding-left: 10px;">
 			</ul>
 		</div>
 		<img alt="" class="img3 png" src="page/back/img/page1_3.jpg">
@@ -101,14 +101,15 @@
 </div>
 <div class="tyg-div-denglv">
 	<div class="tyg-div-form">
-		<form action="admin/login" method="post" onsubmit="return checkin()" modelAttribute="admin">
-			<h2>登录</h2><p class="tyg-p">欢迎访问  VCloud</p>
+		<form action="vuser/login" method="post" onsubmit="return checkin()"><!--  -->
+			<h2>登录</h2><p class="tyg-p">欢迎访问  Vote 后台管理系统</p>
 			<div style="margin:5px 0px;">
-				<input type="text" placeholder="请输入账号..." name="atel" id="account" onblur="checkAccount()"/>
+				<input type="text" placeholder="请输入账号..." name="vphone" id="account" onblur="checkAccount()"/>
 				<span style="color:red;display:none;" id="accountspan">请输入账号...</span>
 			</div>
 			<div style="margin:5px 0px;">
-				<input type="password" placeholder="请输入密码..." name="apwd" id="apwd" onblur="checkPwd()"/>
+				<input type="hidden" name="vuversion" value="2"/>
+				<input type="password" placeholder="请输入密码..." name="vupassword" id="apwd" onblur="checkPwd()"/>
 				<span style="color:red;display:none;" id="pwdspan">请输入密码...</span>
 			</div>
 			<div style="margin:5px 0px;">

@@ -26,7 +26,8 @@
 					<dl id="loginBox">
 						<dt>用户名：</dt>
 						<dd>
-							<input type="text" class="input-text" id="vuId"  name="vuId" value="" />
+							<input type="hidden" name="vuversion" value=""/>
+							<input type="text" class="input-text" id="vuId"  name="vphone" value="" />
 						</dd>
 						<dt>密 码：</dt>
 						<dd>

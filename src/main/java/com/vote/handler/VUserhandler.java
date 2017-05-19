@@ -2,17 +2,19 @@ package com.vote.handler;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.junit.runners.Parameterized.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,11 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.vote.entity.VUser;
-import com.vote.entity.VoteSubject;
 import com.vote.enums.UserStatusEnum;
 import com.vote.enums.UserVersioniEnum;
 import com.vote.service.VUservice;
-import com.vote.service.VoteService;
 import com.vote.utils.CouldMessage;
 import com.vote.utils.PublicKeyMap;
 import com.vote.utils.RSAUtils;
@@ -38,38 +38,45 @@ public class VUserhandler {
 	@Autowired
 	private VUservice uservice;
 
-	@Autowired
-	private VoteService votesvice;
 	/**
 	 * 用户登录
 	 * 
 	 * @return：登录页面
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam("vuId") String vuId, @RequestParam("vupassword") String vupassword,
-			HttpServletRequest request, PrintWriter out, HttpSession session, ModelMap map) {
-		VUser userLogin = new VUser();
-		//List<VoteSubject> subject = votesvice.selectAllVote();
+	public String login(@RequestParam("vphone") String vphone, @RequestParam("vupassword") String vupassword,@RequestParam("vuversion") String vuversion, HttpServletRequest request, PrintWriter out, HttpSession session,
+			ModelMap map) {
+		VUser userLogin=new VUser();
 		// 如果有错误的话，那么将返回注册页面
-		if (StringUtils.isNotBlank(vuId) && StringUtils.isNotBlank(vupassword)) {
-			userLogin.setVphone(vuId);
+		if (vuversion.equals("2")&& StringUtils.isNotBlank(vphone) ) {
+			userLogin.setVphone(vphone);
 			userLogin.setVupassword(vupassword);
 			VUser users = uservice.login(userLogin);
 			if (null != users) {
-				session.setAttribute(SessionAttribute.USERLOGIN, users);
-				session.setAttribute(SessionAttribute.USERLOGINID, users.getVuId());
-
-				//map.put("usersLogin", users.getVuusername());
-				//map.put("subject", subject);
-				return "index";
+				return "back/index";
 			} else {
 				map.put("regErrorMsg", "用户名或密码错误");
-				return "login";
+				return "back/backlogin";
 			}
 		} else {
-			map.put("regErrorMsg", "数据为空");
-			return "login";
+			if (StringUtils.isNotBlank(vphone) && StringUtils.isNotBlank(vupassword)) {
+				userLogin.setVphone(vphone);
+				userLogin.setVupassword(vupassword);
+				VUser users = uservice.login(userLogin);
+				if (null != users) {
+					session.setAttribute(SessionAttribute.USERLOGIN, users);
+					session.setAttribute(SessionAttribute.USERLOGINID, users.getVuId());
+					return "index";
+				} else {
+					map.put("regErrorMsg", "用户名或密码错误");
+					return "login";
+				}
+			} else {
+				map.put("regErrorMsg", "数据为空");
+				return "login";
+			}
 		}
+
 	}
 
 	/**
@@ -187,5 +194,22 @@ public class VUserhandler {
 		Random ne = new Random();// 实例化一个random的对象ne
 		val = ne.nextInt(9999 - 1000 + 1) + 1000 + "";// 为变量赋随机值1000-9999
 		return val;
+	}
+
+	// 检验验证码的正确性
+	@RequestMapping(value = "/checkcode/{code}")
+	public void checkCode(@PathVariable String code, HttpSession session, PrintWriter out,
+			HttpServletResponse response) {
+		String yzm = (String) session.getAttribute("rand");
+		System.out.println("]]]]]"+yzm);
+		response.setContentType("text/html");
+		// Response.ContentType = "text/html";
+		if (yzm.equalsIgnoreCase(code)) {
+			out.print(1);
+		} else {
+			out.print(0);
+		}
+		out.flush();
+		out.close();
 	}
 }

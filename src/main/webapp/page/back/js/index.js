@@ -19,12 +19,22 @@ $(function(){
 				   		closable:true
 					});
 				}
-			}else if(text=="上传文件管理"){
-				if(tabs.tabs('exists','上传文件管理')){
-					tabs.tabs('select',"上传文件管理");
+			}else if(text=="投票管理"){
+				if(tabs.tabs('exists','投票管理')){
+					tabs.tabs('select',"投票管理");
 				}else{
 					tabs.tabs('add',{
-						title:'上传文件管理',  
+						title:'投票管理',  
+				   		href:"file.html",
+				   		closable:true
+					});
+				}
+			}else if(text=="数据统计"){
+				if(tabs.tabs('exists','数据统计')){
+					tabs.tabs('select',"数据统计");
+				}else{
+					tabs.tabs('add',{
+						title:'数据统计',  
 				   		href:"file.html",
 				   		closable:true
 					});
