@@ -1,5 +1,7 @@
 package com.vote.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,11 @@ public class VUserviceImpl implements VUservice {
 	@Override
 	public String selectPhone(String phone) {
 		return vmapper.selectPhone(phone);
+	}
+
+	@Override
+	public List<VUser> findAllUsersByPages() {
+		return vmapper.findAllUsersByPages();
 	}
 
 }

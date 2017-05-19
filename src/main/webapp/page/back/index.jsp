@@ -34,7 +34,8 @@
 			<li><span>菜单</span>
 				<ul>
 					<li>用户管理</li>
-					<li>上传文件管理</li>
+					<li>投票管理</li>
+					<li>数据统计</li>
 				</ul>
 			</li>
 		</ul>

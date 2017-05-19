@@ -16,4 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from "VoteUser" where
 		vphone=#{vphone} and vuPassword =#{vupassword}
 	</select>
+	
+	<!-- 登录 -->
+	<select id="findAllUsersByPages" parameterType="VUser" resultType="VUser">
+		select * from "VoteUser" 
+	</select>
+	
 </mapper>

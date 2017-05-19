@@ -1,5 +1,7 @@
 package com.vote.service;
 
+import java.util.List;
+
 import com.vote.entity.VUser;
 
 public interface VUservice {
@@ -26,4 +28,10 @@ public interface VUservice {
 	 * @return
 	 */
 	public String selectPhone(String phone);
+	
+	/**
+	 * 查询所有用户
+	 * @return
+	 */
+	public List<VUser> findAllUsersByPages();
 }

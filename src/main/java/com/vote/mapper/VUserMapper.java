@@ -1,5 +1,7 @@
 package com.vote.mapper;
 
+import java.util.List;
+
 import com.vote.entity.VUser;
 
 public interface VUserMapper {
@@ -26,4 +28,11 @@ public interface VUserMapper {
 	 * @return
 	 */
 	public String selectPhone(String phone);
+
+	/**
+	 * 查询所有用户
+	 * 
+	 * @return
+	 */
+	public List<VUser> findAllUsersByPages();
 }

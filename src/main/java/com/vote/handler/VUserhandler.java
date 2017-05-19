@@ -201,7 +201,6 @@ public class VUserhandler {
 	public void checkCode(@PathVariable String code, HttpSession session, PrintWriter out,
 			HttpServletResponse response) {
 		String yzm = (String) session.getAttribute("rand");
-		System.out.println("]]]]]"+yzm);
 		response.setContentType("text/html");
 		// Response.ContentType = "text/html";
 		if (yzm.equalsIgnoreCase(code)) {
